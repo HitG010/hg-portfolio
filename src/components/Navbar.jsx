@@ -1,5 +1,5 @@
 import { FileUser } from "lucide-react";
-import kbLogo from "../assets/kbLogo.png";
+import hglogo from "../assets/hgLogo.svg";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -11,7 +11,7 @@ const Navbar = () => {
     <nav className="text-textPrimary p-4 w-full fixed top-0 z-10 bg-gradient-to-b from-[#111111] to-[#11111101] ">
       <div className="px-4 container mx-auto flex justify-between items-center">
         <img
-          src={kbLogo}
+          src={hglogo}
           className="h-8 md:h-10 cursor-pointer object-contain"
           onClick={() => {
             window.location.href = "/";

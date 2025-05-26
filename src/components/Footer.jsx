@@ -1,5 +1,5 @@
 import { Mail, ArrowUpRight } from "lucide-react";
-import kbLogo from "../assets/kbLogo.png";
+import hglogo from "../assets/hgLogo.svg";
 
 const Footer = () => {
   return (
@@ -28,9 +28,9 @@ const Footer = () => {
       </div>
       <div className="flex justify-center items-center mt-6">
         <img
-          src={kbLogo}
+          src={hglogo}
           alt="logo"
-          className="h-16 w-16 md:h-20 md:w-20 object-contain"
+          className="h-20 w-20 md:h-20 md:w-20 object-contain"
         ></img>
       </div>
       {/* check the device and plan the footer accordingly */}
