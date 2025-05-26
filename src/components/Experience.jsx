@@ -2,48 +2,41 @@ import React from "react";
 
 const experiences = [
   {
-    title: "Blockchain Research Intern",
+    title: "ML Research Intern",
     company: "Delhi Technological University (Under Prof. Rahul Thakur)",
-    duration: "Oct. 2024 - Dec. 2024",
-    description: `<p className="mt-2">Conducted research on deepfake detection and prevention using blockchain and machine learning. Co-authored a research paper titled "HyperSwin: Preventing Deepfake Proliferation with Swin-Efficient Fusion in a Hyperledger Ecosystem". Developed a secure, decentralized system using Hyperledger Fabric to track video authenticity and ensuring verifiable tamper-proof results. Reduced processing time upto 90-99% by bypassing redundant video checks, enabling faster deepfake detection.</p>`,
-    website: "https://scholar.google.com/citations?user=e51fOvMAAAAJ&hl=en&oi=ao",
+    duration: "Aug. 2024 - Dec. 2024",
+    description: `<p className="mt-2">I developed a hybrid deep learning model combining Swin Transformer and EfficientNet-B0, achieving 98.32% accuracy on a dataset of 800+ videos and improving deepfake detection performance by 9.2%. Additionally, I engineered a Swin Transformer + FPN-based segmentation pipeline for image forgery detection, reducing false positives by 15% and significantly enhancing feature extraction capabilities. By optimizing training strategies through advanced data augmentation and fine-tuning, I achieved a 12% increase in model generalization on real vs. deepfake datasets.</p>`,
+    website:
+      "https://scholar.google.com/citations?user=e51fOvMAAAAJ&hl=en&oi=ao",
   },
   {
-    title: "Full-Stack Web Developer",
+    title: "Web Development & AI/ML Intern",
+    company: "Racloop Technologies, Gurgaon",
+    duration: "May. 2024 - Jul. 2024",
+    description: `<p className="mt-2">I designed and built custom chatbots from scratch using transformer-based architectures with up to 124 million parameters, tailored to meet specific company use cases. In addition, I contributed to multiple web development projects using Next.js, delivering over 4 responsive and high-performance web applications as part of a collaborative 5-member team. I also performed in-depth data analysis on more than 50,000 data points, generating actionable insights that led to a 15% improvement in workflow optimization.</p>`,
+    website: "https://whilter.ai/",
+  },
+  {
+    title: "Web Development & AI/ML Intern",
     company: "Delhi Police",
-    duration: "May 2024 - Jul. 2024",
-    description: `<p className="mt-2">Created a comprehensive web and mobile application <a href="https://www.delhicop.in" target="_blank"><b>DelhiCOP</b></a> to enable efficient tracking and report daily crimes, <b>enhancing operational efficiency</b>. Architected and implemented a modular backend using <b>Node.js</b>, <b>Express</b>, and <b>MongoDB</b>, and built a full-stack interface with <b>React</b>, improving <b>scalability</b> and <b>maintainability</b>.</p>`,
+    duration: "Mar 2024 - May 2024",
+    description: `<p className="mt-2">I created a mobile application, DelhiCOP, to streamline crime tracking and daily reporting, significantly enhancing operational efficiency, also built a crime detection model leveraging advanced computer vision techniques such as LRCN, Conv-LSTM, and Vision Transformer, achieving 92% accuracy. Additionally, I conducted an in-depth analysis of over 10,000 crime records, uncovering patterns that led to a 20% improvement in resource allocation. I collaborated with a 15-member team, contributing to UI/UX design and implementing four intuitive front-end interfaces.</p>`,
     website: "https://www.delhicop.in",
   },
-  {
-    title: "Full-Stack Web Developer",
-    company: "Skillop",
-    duration: "Dec. 2023 - Jul. 2024",
-    description: `<p className="mt-2">Led a team of six to design and implement a dynamic dashboard, streamlining data visualization and enhancing user interaction. Contributed to building a <b>responsive, scalable</b> platform using <b>React, RESTful APIs, Tailwind CSS</b>, and <b>MongoDB</b>, ensuring robust frontend and backend integration.</p>`,
-    website: "https://skillop.in",
-  },
-  {
-    title: "UI/UX Designer",
-    company: "BigWig Media",
-    duration: "Jan. 2024",
-    description: `<p className="mt-2">Revamped website flows, and added user friendly functionalities. Coordinated sessions to work through functionality, site architecture, and user flow requirements.</p>`,
-    website: "",
-  }
 ];
 
 const ExperienceSection = () => {
   return (
     <div className="bg-bgDark text-white mt-4 mx-auto w-full md:w-[60%] max-w-7xl px-4 sm:px-6 lg:px-8">
-      <h2 className="text-4xl font-bold mb-8">
-        Experience
-      </h2>
+      <h2 className="text-4xl font-bold mb-8">Experience</h2>
       <div className="relative">
         {experiences.map((experience, index) => (
           <div
             key={index}
             className="relative pl-6 sm:pl-10 pb-8 flex flex-col sm:flex-row"
           >
-            <div className="z-10 absolute top-1 left-0 w-4 h-4 sm:w-5 sm:h-5 bg-white border border-4 border-textSecondary rounded-full"></div> {/* Dot */}
+            <div className="z-10 absolute top-1 left-0 w-4 h-4 sm:w-5 sm:h-5 bg-white border border-4 border-textSecondary rounded-full"></div>{" "}
+            {/* Dot */}
             <div className="flex-grow">
               <div className="flex flex-col sm:flex-row sm:justify-between items-start sm:items-center">
                 <div>
