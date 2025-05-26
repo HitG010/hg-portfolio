@@ -1,10 +1,18 @@
-import React from 'react';
+import React from "react";
 
 // Array of skills and their proficiency (out of 100)
 const skills = [
   { name: "C/C++", level: 85 },
   { name: "JavaScript", level: 90 },
   { name: "Python", level: 80 },
+  { name: "PyTorch", level: 70 },
+  { name: "TensorFlow", level: 70 },
+  { name: "scikit-learn", level: 70 },
+  { name: "MATLAB", level: 70 },
+  { name: "OpenCV", level: 70 },
+  { name: "Langchain", level: 70 },
+  { name: "AI Agents", level: 70 },
+  // {name : ""}
   { name: "HTML", level: 95 },
   { name: "CSS", level: 90 },
   { name: "React", level: 90 },
@@ -13,15 +21,11 @@ const skills = [
   { name: "Node.js", level: 85 },
   { name: "Express.js", level: 80 },
   { name: "Flask", level: 70 },
-  { name: "Solidity", level: 75 },
   { name: "Git/Github", level: 95 },
   { name: "GCP", level: 65 },
-  { name: "Firebase", level: 75 },
   { name: "MongoDB", level: 80 },
   { name: "PostgreSQL", level: 70 },
-  { name: "Figma", level: 70 },
   { name: "NextJS", level: 50 },
-  { name: "Web Sockets", level: 75 },
 ];
 
 const ProgressBar = ({ skill, level }) => {
@@ -58,11 +62,11 @@ const SkillSet = () => {
     <div className="text-white rounded-xl">
       <h2 className="text-2xl font-semibold mb-6">My Skills</h2>
       <div className="flex flex-wrap gap-4">
-      {skills.map((skill, index) => (
-        <div className='flex justify-center items-center px-3 py-1 bg-darkCard/50 rounded-lg border border-1 border-textSecondary/20 transition-all duration-300 hover:bg-textSecondary/20 '>
+        {skills.map((skill, index) => (
+          <div className="flex justify-center items-center px-3 py-1 bg-darkCard/50 rounded-lg border border-1 border-textSecondary/20 transition-all duration-300 hover:bg-textSecondary/20 ">
             {skill.name}
-        </div>
-      ))}
+          </div>
+        ))}
       </div>
     </div>
   );

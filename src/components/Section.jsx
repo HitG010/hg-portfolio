@@ -1,5 +1,6 @@
 import { MapPinHouse, Linkedin, Github, Mail } from "lucide-react";
 import { SiLeetcode } from "react-icons/si";
+import { SiCodeforces } from "react-icons/si";
 
 const Section = () => {
   return (
@@ -48,6 +49,15 @@ const Section = () => {
                 className="w-full h-full p-2.5 md:p-3 border border-white/10 rounded-lg cursor-pointer"
                 onClick={() => {
                   window.open("https://leetcode.com/u/HiteshGupta20/");
+                }}
+              />
+              <div className="absolute bottom-0 left-0 right-0 h-2 bg-textSecondary opacity-30 blur-lg group-hover:opacity-100 transition duration-300"></div>
+            </div>
+            <div className="group relative overflow-hidden w-10 h-10 md:w-12 md:h-12 rounded-lg hover:opacity-1">
+              <SiCodeforces
+                className="w-full h-full p-2.5 md:p-3 border border-white/10 rounded-lg cursor-pointer"
+                onClick={() => {
+                  window.open("https://codeforces.com/profile/Hitesh10");
                 }}
               />
               <div className="absolute bottom-0 left-0 right-0 h-2 bg-textSecondary opacity-30 blur-lg group-hover:opacity-100 transition duration-300"></div>
