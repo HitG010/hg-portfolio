@@ -1,5 +1,5 @@
 import { Loader as LoaderIcon } from "lucide-react";
-import loaderVid from "../assets/NNLoader.mp4";
+import loaderVid from "../assets/NNLoader1.mp4";
 
 const Loader = () => {
   return (
@@ -12,7 +12,7 @@ const Loader = () => {
           autoPlay
           muted
           loop
-          className="h-[50%] w-[40%] filter"
+          className="h-[60%] w-[50%] filter bg-blend-overlay"
         >
           <source src={loaderVid} type="video/mp4" />
           Your browser does not support the video tag.
