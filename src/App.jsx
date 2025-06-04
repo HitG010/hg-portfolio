@@ -23,14 +23,14 @@ import ProjectDeets from "./components/ProjectDeets";
 // const ProjectDeets = lazy(() => import('./components/ProjectDeets'));
 
 const App = () => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const location = useLocation();
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setLoading(false);
-  //   }, 1500);
-  // }, []);
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1500);
+  }, []);
 
   return loading ? (
     <Loader />
