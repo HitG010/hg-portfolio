@@ -36,7 +36,7 @@ const Navbar = () => {
             className="text-black bg-white text-md font-semibold py-2 px-4 rounded-lg flex gap-2 items-center hover:bg-white/80 transition duration-300"
             onClick={() => {
               window.open(
-                "https://drive.google.com/file/d/1QEnzFSLvV5zG4vWqVGjhs2QLqE2_5Z3F/view?usp=sharing",
+                "https://drive.google.com/file/d/1E1gq8PaaVyQeFxWtTzP3V39Lh9dBhtS1/view?usp=sharing",
                 "_blank"
               );
             }}
