@@ -1,4 +1,5 @@
-import { Mail, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import hglogo from "../assets/hgLogo.svg";
 
 const Footer = () => {
@@ -14,15 +15,16 @@ const Footer = () => {
         </div>
         <div className="mt-4 flex flex-row justify-between items-center">
           <h2 className="text-xl md:text-4xl font-bold">Let's Get in Touch</h2>
-          <div
-            className="relative group flex gap-2 text-lg text-primary items-center cursor-pointer"
-            onClick={() => {
-              window.location.href = "/contact";
-            }}
+          <Link
+            to="/contact"
+            className="relative group flex gap-2 text-lg text-primary items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm"
           >
-            Say Hi 👋 <ArrowUpRight />
-            <span className="absolute inline-block h-[2px] left-0 bottom-0 w-0 bg-primary transition-all duration-300 group-hover:w-full"></span>
-          </div>
+            Say Hi 👋 <ArrowUpRight aria-hidden="true" />
+            <span
+              aria-hidden="true"
+              className="absolute inline-block h-[2px] left-0 bottom-0 w-0 bg-primary transition-all duration-300 group-hover:w-full motion-reduce:transition-none"
+            ></span>
+          </Link>
         </div>
         <span className="absolute inline-block h-[2px] left-0 bottom-0 w-full bg-secondary/20 transition-all duration-300"></span>
       </div>

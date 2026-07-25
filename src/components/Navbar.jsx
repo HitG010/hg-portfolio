@@ -11,13 +11,15 @@ const Navbar = () => {
   return (
     <nav className="text-primary p-4 w-full fixed top-0 z-10 bg-gradient-to-b from-bg to-transparent">
       <div className="px-4 container mx-auto flex justify-between items-center">
-        <img
-          src={hglogo}
-          className="h-8 md:h-10 cursor-pointer object-contain"
-          onClick={() => {
-            window.location.href = "/";
-          }}
-        ></img>
+        {/* The link carries the accessible name, so the image itself is
+            marked decorative to avoid announcing it twice. */}
+        <Link
+          to="/"
+          aria-label="Hitesh Gupta — home"
+          className="rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+        >
+          <img src={hglogo} alt="" className="h-8 md:h-10 object-contain" />
+        </Link>
         <ul className="gap-6 text-primary hidden md:flex">
           <li className="text-md cursor-pointer hover:text-primary">
             <Link to="/">Home</Link>

@@ -1,7 +1,6 @@
-import React from "react";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { projectsData } from "../data/projectsData";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 const Projects = () => {
   const path = useLocation().pathname;
   return (
@@ -9,12 +8,12 @@ const Projects = () => {
       <div className="flex justify-between gap-4 mb-8">
         <h2 className="text-4xl font-bold">Projects</h2>
         {path === "/" && (
-          <button
-            className="flex gap-2 items-center text-secondary px-2 py-1 rounded-md transition-all duration-300 hover:bg-surface"
-            onClick={() => (window.location.href = "/projects/")}
+          <Link
+            to="/projects"
+            className="flex gap-2 items-center text-secondary px-2 py-1 rounded-md transition-colors duration-300 hover:bg-surface hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
           >
-            View All <ArrowUpRight className="h-4 w-4" />
-          </button>
+            View All <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
+          </Link>
         )}
       </div>
       {projectsData.map((project, index) => (
@@ -67,14 +66,13 @@ const Projects = () => {
               dangerouslySetInnerHTML={{ __html: project.ProjectTagline }}
             ></p>
             <div className="pointer-events-none absolute bottom-0 flex w-full translate-y-10 transform-gpu flex-row items-center pb-4 opacity-0 transition-all duration-300 group-hover:translate-y-10 group-hover:opacity-100 custom">
-              <div
-                className="pointer-events-auto custom bg-primary rounded-lg py-2 px-3 text-md font-semibold text-bg flex gap-2 items-center cursor-pointer hover:bg-primary/80 transition-colors"
-                onClick={() => {
-                  window.location.href = `/projects/${project.ProjectId}`;
-                }}
+              <Link
+                to={`/projects/${project.ProjectId}`}
+                aria-label={`View details for ${project.ProjectName}`}
+                className="pointer-events-auto bg-primary rounded-lg py-2 px-3 text-md font-semibold text-bg flex gap-2 items-center hover:bg-primary/80 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
               >
-                View Details <ArrowRight className="w-4 h-4" />
-              </div>
+                View Details <ArrowRight aria-hidden="true" className="w-4 h-4" />
+              </Link>
               <div className="pointer-events-none absolute inset-0 transform-gpu transition-all duration-300 group-hover:bg-primary/[0.03]"></div>
             </div>
           </div>

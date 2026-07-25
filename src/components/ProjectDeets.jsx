@@ -1,5 +1,4 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { FaChevronLeft } from "react-icons/fa6";
 import { CgWebsite } from 'react-icons/cg';
 import { Github, Globe, Figma } from 'lucide-react';
@@ -15,12 +14,12 @@ const ProjectDeets = () => {
     return (
         <div className="mt-16 mx-auto w-full sm:w-[80%] md:w-[60%] px-4">
             {/* Back to projects button */}
-            <button
-                className="flex gap-2 items-center text-secondary px-4 py-2 rounded-md transition-all duration-300 hover:bg-surface mb-4"
-                onClick={() => window.location.href = '/projects/'}
+            <Link
+                to="/projects"
+                className="inline-flex gap-2 items-center text-secondary px-4 py-2 rounded-md transition-colors duration-300 hover:bg-surface hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent mb-4"
             >
-                <FaChevronLeft /> Back to Projects
-            </button>
+                <FaChevronLeft aria-hidden="true" /> Back to Projects
+            </Link>
             {projectsData.map((project) => {
                 if (project.ProjectId == id) {
                     return (

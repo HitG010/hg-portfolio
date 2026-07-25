@@ -1,4 +1,5 @@
 import { MapPinHouse } from "lucide-react";
+import { Link } from "react-router-dom";
 import SocialLinks from "./SocialLinks";
 import { heroSocialIds } from "../data/socials";
 
@@ -27,14 +28,12 @@ const Section = () => {
           Competitive Programming and Full-Stack Development focused on building
           intelligent, high-impact, and scalable solutions through
           research-driven innovation.{" "}
-          <button
-            className="font-light text-secondary"
-            onClick={() => {
-              window.location.href = "/about";
-            }}
+          <Link
+            to="/about"
+            className="font-light text-secondary underline-offset-2 transition-colors hover:text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
           >
             read more...
-          </button>
+          </Link>
         </p>
       </div>
     </section>
