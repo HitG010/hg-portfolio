@@ -14,17 +14,19 @@ const Loader = () => {
         {prefersReducedMotion ? (
           <p className="text-lg font-medium text-secondary">Loading…</p>
         ) : (
-          // The clip is white line-art on solid black. Screen-blending drops
-          // the black on the dark theme; on light we invert first and
-          // multiply, so the artwork sits on the page background either way
-          // instead of showing as a filled rectangle.
+          // White line-art on a PURE black background — the asset was
+          // re-levelled for this, because these blend modes only cancel
+          // completely at pure black/white. Screen drops the black on dark;
+          // on light we invert first (background becomes pure white) and
+          // multiply. Either way only the artwork paints, so it sits
+          // directly on the page rather than in a visible box.
           <video
             autoPlay
             muted
             loop
             playsInline
             aria-hidden="true"
-            className="h-[60%] w-[50%] invert mix-blend-multiply dark:invert-0 dark:mix-blend-screen"
+            className="h-auto w-[70%] max-w-[300px] invert mix-blend-multiply dark:invert-0 dark:mix-blend-screen"
           >
             <source src={loaderVid} type="video/mp4" />
           </video>
