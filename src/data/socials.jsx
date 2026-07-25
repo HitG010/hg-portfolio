@@ -47,7 +47,7 @@ export const socialLinks = {
 // TODO: host the PDF in public/ and version it with the site. Linking to
 // Drive means the resume can rot without the repo knowing.
 export const resumeUrl =
-  "https://drive.google.com/file/d/1QEnzFSLvV5zG4vWqVGjhs2QLqE2_5Z3F/view?usp=sharing";
+  "https://drive.google.com/file/d/1E1gq8PaaVyQeFxWtTzP3V39Lh9dBhtS1/view?usp=sharing";
 
 // The hero leads with competitive-programming profiles; the contact
 // sections lead with the ways someone would actually reach out.
