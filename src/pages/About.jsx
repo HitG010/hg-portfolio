@@ -5,16 +5,20 @@ import Skills from "../components/Skills";
 import SocialLinks from "../components/SocialLinks";
 import { contactSocialIds } from "../data/socials";
 
-// TODO (content): still the 2024 bio — no mention of anything since.
+// Drafted from the roles in src/data/experience.js — every claim here maps to
+// something on the timeline. Worth rewriting in your own voice.
 const paragraphs = [
-  "I’m a dedicated software engineer with strong foundations in Machine Learning, Competitive Programming, and Full-Stack development, focused on building intelligent and scalable systems. I thrive in high-impact environments where I can combine algorithmic thinking, model design, and system architecture to solve real-world problems.",
-  "My approach is rooted in performance, precision, and user value — whether it’s developing advanced deepfake detection pipelines using Swin Transformer and EfficientNet, creating AI-driven chatbots, or optimizing backend infrastructure for scalable deployment. I’ve built end-to-end solutions across web, AI, and data domains, always aiming for both technical excellence and user-centric impact.",
-  "With a research-backed mindset and hands-on project experience, I strive to engineer solutions that are not just functional — but transformative.",
+  "I’m a software engineer working across machine learning, systems and full-stack development. I like problems where the model is only half the job — where getting something to actually run, reliably and fast, is the other half.",
+  "Most recently I was at Microsoft in Noida, where I built an AI-powered test generation framework that used HAR analysis to author 36 test cases and surfaced a production bug in their cloud security proxy. Making generated tests trustworthy enough to sit in a CI/CD pipeline meant building validation and verification workflows around them, so the output was deterministic rather than merely plausible.",
+  "Before that, at VVDN Technologies, I trained a real-time network intrusion detection system that reached over 99% accuracy with 40% fewer false positives than rule-based firewalls — and then took it to hardware, deploying on AMD’s VEK280 with Vitis AI for a 3× speedup over CPU inference. My research at DTU ran along the same line: a hybrid Swin Transformer and EfficientNet-B0 architecture for deepfake detection that hit 98.32% accuracy, which grew into DeepTrace.",
+  "Outside of that I compete in competitive programming, and most of what I build ends up here as a project. If you’re working on something in ML, security or systems, I’d like to hear about it.",
 ];
 
+// TODO: confirm — the Microsoft internship ran to July 2026, so this may want
+// to read "full-time roles" rather than internships.
 const facts = [
   { label: "Based in", value: "Delhi, India" },
-  { label: "Focus", value: "ML · Competitive Programming · Full-Stack" },
+  { label: "Focus", value: "ML · Systems · Full-Stack" },
   { label: "Open to", value: "Internships & collaborations" },
 ];
 
