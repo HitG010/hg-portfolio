@@ -52,10 +52,14 @@ const ProjectShowcase = ({ projects }) => {
     };
   }, [projects.length]);
 
+  // The preview column is the wider of the two so the work reads large. The
+  // frame is 3:2 to match the thumbnails themselves (1280x832, ratio 1.54) —
+  // a taller frame sized in vh looked bigger but object-cover then sliced
+  // ~17% off each side, cutting titles and stat cards out of the dashboards.
   return (
-    <div className="grid grid-cols-2 gap-12">
+    <div className="grid grid-cols-[1.5fr_1fr] gap-10">
       <div>
-        <div className="sticky top-[18vh] aspect-[4/3] overflow-hidden rounded-xl border border-border bg-surface">
+        <div className="sticky top-[16vh] aspect-[3/2] overflow-hidden rounded-xl border border-border bg-surface">
           {projects.map((project, index) => (
             <img
               key={project.ProjectId}
