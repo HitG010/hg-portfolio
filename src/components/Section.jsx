@@ -2,13 +2,20 @@ import { MapPinHouse } from "lucide-react";
 import { Link } from "react-router-dom";
 import Container from "./Container";
 import SocialLinks from "./SocialLinks";
+import Hero from "./hero/Hero";
 import { heroSocialIds } from "../data/socials";
 
 const Section = () => {
   return (
-    <Container as="section">
-      <div className="rounded-2xl border border-border bg-bg">
-        <div className="px-6 py-8 md:px-8">
+    // `isolate` keeps the backdrop's negative z-index inside this section
+    // rather than sending it behind the page background.
+    <section className="relative isolate py-10 md:py-16">
+      <Hero />
+      <Container>
+        {/* Translucent so the network reads through the card instead of
+            being boxed out by it. */}
+        <div className="rounded-2xl border border-border bg-bg/60 backdrop-blur-md">
+          <div className="px-6 py-8 md:px-8">
           <div className="flex flex-col items-start justify-between md:flex-row md:items-center">
             <div>
               <h1 className="text-headline font-semibold">
@@ -37,9 +44,10 @@ const Section = () => {
               read more…
             </Link>
           </p>
+          </div>
         </div>
-      </div>
-    </Container>
+      </Container>
+    </section>
   );
 };
 
