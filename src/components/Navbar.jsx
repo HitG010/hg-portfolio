@@ -3,6 +3,7 @@ import hglogo from "../assets/hgLogo.svg";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
+import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -32,6 +33,7 @@ const Navbar = () => {
           </li>
         </ul>
         <div className="flex gap-2 items-center">
+          <ThemeToggle />
           <button
             className="text-bg bg-primary text-md font-semibold py-2 px-4 rounded-lg flex gap-2 items-center hover:bg-primary/80 transition duration-300"
             onClick={() => {
