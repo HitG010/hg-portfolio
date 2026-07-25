@@ -1,7 +1,9 @@
+import typography from "@tailwindcss/typography";
+
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: "class",
-  content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
+  content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx,mdx}"],
   theme: {
     extend: {
       // Every colour resolves through a CSS variable so the same class works
@@ -38,5 +40,5 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [typography],
 };

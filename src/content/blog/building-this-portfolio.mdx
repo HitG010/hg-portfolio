@@ -1,0 +1,83 @@
+---
+title: "Building this portfolio"
+date: "2026-07-25"
+summary: "A placeholder post — replace this with your own writing. It exists so the blog layout, code highlighting and typography can be checked against real content."
+tags: ["meta", "react"]
+readingTime: "3 min"
+---
+
+> **This is a placeholder.** Delete this file or rewrite it. It is here so the
+> post layout, syntax highlighting and typography render against something
+> realistic rather than lorem ipsum.
+
+Everything below demonstrates a feature of the post renderer, so you can see
+what is available when you write a real one.
+
+## Headings and prose
+
+Body text is capped at a readable measure rather than running the full width
+of the page. Links inside prose — like [the React docs](https://react.dev) —
+pick up the accent colour, and `inline code` gets its own treatment.
+
+### A smaller heading
+
+Lists work as you would expect:
+
+- Unordered items
+- With **bold** and _italic_ text
+- And nested points
+  - Like this one
+
+1. Ordered lists too
+2. Numbered automatically
+
+## Code blocks
+
+Highlighting happens at build time, so no highlighter is shipped to the
+browser:
+
+```jsx
+function useMediaQuery(query) {
+  const subscribe = useCallback(
+    (onStoreChange) => {
+      const mq = window.matchMedia(query);
+      mq.addEventListener("change", onStoreChange);
+      return () => mq.removeEventListener("change", onStoreChange);
+    },
+    [query]
+  );
+
+  return useSyncExternalStore(
+    subscribe,
+    () => window.matchMedia(query).matches,
+    () => false
+  );
+}
+```
+
+## Tables
+
+| Thing            | Value            |
+| ---------------- | ---------------- |
+| Build tool       | Vite             |
+| Styling          | Tailwind         |
+| Content          | MDX              |
+
+## Writing a new post
+
+Add a `.mdx` file to `src/content/blog/`. The frontmatter block at the top
+drives the index page:
+
+```yaml
+---
+title: "Your title"
+date: "2026-08-01"
+summary: "One or two sentences for the index."
+tags: ["react"]
+readingTime: "5 min"
+draft: true # omit or set false to publish
+---
+```
+
+Set `draft: true` while you work on it and the post stays in the repo but off
+the site.

@@ -52,6 +52,22 @@
   }
 }
 
+/* rehype-pretty-code is configured with a light and a dark theme, so it emits
+   BOTH on every token as custom properties and leaves the choice to CSS —
+   without this, code blocks render unstyled. Outside @layer base for the same
+   reason as the tokens above: Tailwind would strip the `.dark` selector. */
+pre code span {
+  color: var(--shiki-light);
+  font-style: var(--shiki-light-font-style);
+  font-weight: var(--shiki-light-font-weight);
+}
+
+.dark pre code span {
+  color: var(--shiki-dark);
+  font-style: var(--shiki-dark-font-style);
+  font-weight: var(--shiki-dark-font-weight);
+}
+
 /* Blanket guard so anything not individually gated with motion-reduce:
    still settles instantly. Components that need to swap behaviour rather
    than just shorten it use framer-motion's useReducedMotion instead. */
