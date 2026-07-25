@@ -18,7 +18,7 @@ const Projects = lazy(() => import("./pages/Projects"));
 const ContactMe = lazy(() => import("./pages/ContactMe"));
 const Blog = lazy(() => import("./pages/Blog"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
-const ProjectDeets = lazy(() => import("./components/ProjectDeets"));
+const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -64,7 +64,7 @@ const App = () => {
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/projects" element={<Projects />} />
-              <Route path="/projects/:id" element={<ProjectDeets />} />
+              <Route path="/projects/:id" element={<ProjectDetail />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:slug" element={<BlogPost />} />
               <Route path="/contact" element={<ContactMe />} />
