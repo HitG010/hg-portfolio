@@ -5,11 +5,11 @@ import { heroSocialIds } from "../data/socials";
 
 const Section = () => {
   return (
-    <section className="mt-24 w-[90%] md:w-[60%] bg-bg border border-border rounded-2xl content-fit">
+    <section className="mt-24 w-[90%] md:w-[60%] bg-bg border border-border rounded-2xl">
       <div className="container mx-auto px-6 py-8">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
           <div>
-            <h1 className="text-2xl lg:text-3xl xl:4xl font-semibold">
+            <h1 className="text-2xl lg:text-3xl xl:text-4xl font-semibold">
               Hi, I'm Hitesh Gupta 👋
             </h1>
             <div className="mt-1 text-base md:text-lg flex gap-2 items-center text-secondary">

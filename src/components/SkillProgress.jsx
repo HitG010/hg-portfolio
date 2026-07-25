@@ -63,7 +63,7 @@ const SkillSet = () => {
       <h2 className="text-2xl font-semibold mb-6">My Skills</h2>
       <div className="flex flex-wrap gap-4">
         {skills.map((skill, index) => (
-          <div className="flex justify-center items-center px-3 py-1 bg-surface/50 rounded-lg border border-1 border-secondary/20 transition-all duration-300 hover:bg-secondary/20 ">
+          <div className="flex justify-center items-center px-3 py-1 bg-surface/50 rounded-lg border border-secondary/20 transition-all duration-300 hover:bg-secondary/20 ">
             {skill.name}
           </div>
         ))}

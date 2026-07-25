@@ -35,7 +35,7 @@ const ExperienceSection = () => {
             key={index}
             className="relative pl-6 sm:pl-10 pb-8 flex flex-col sm:flex-row"
           >
-            <div className="z-10 absolute top-1 left-0 w-4 h-4 sm:w-5 sm:h-5 bg-primary border border-4 border-secondary rounded-full"></div>{" "}
+            <div className="z-10 absolute top-1 left-0 w-4 h-4 sm:w-5 sm:h-5 bg-primary border-4 border-secondary rounded-full"></div>{" "}
             {/* Dot */}
             <div className="flex-grow">
               <div className="flex flex-col sm:flex-row sm:justify-between items-start sm:items-center">

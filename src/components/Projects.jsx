@@ -35,7 +35,7 @@ const Projects = () => {
               className="absolute left-0 top-0 h-full w-full border-none transition-all duration-300 ease-out opacity-95 dark:opacity-70 [mask-image:linear-gradient(to_top,transparent_20%,#000_100%)] group-hover:scale-105 object-cover"
             />
           </div>
-          <div className="pointer-events-none z-10 flex transform-gpu flex-col gap-1 p-4 sm:p-6 transition-all duration-300 group-hover:-translate-y-10 custom">
+          <div className="pointer-events-none z-10 flex transform-gpu flex-col gap-1 p-4 sm:p-6 transition-all duration-300 group-hover:-translate-y-10">
             {project.ProjectLogo !== undefined && (
               <img
                 src={project.ProjectLogo}
@@ -47,25 +47,24 @@ const Projects = () => {
                 className="h-10 w-10 sm:h-12 sm:w-12 object-contain mb-1"
               />
             )}
-            <h2 className="text-2xl sm:text-3xl font-semibold text-primary m-0 custom">
+            <h2 className="text-2xl sm:text-3xl font-semibold text-primary m-0">
               {project.ProjectName}
             </h2>
-            <div className="flex gap-2 mt-1 custom flex-wrap">
+            <div className="flex gap-2 mt-1 flex-wrap">
               {project.ProjectTechUsed.map((tech, techIndex) => (
                 <div
-                  className="text-xs sm:text-sm card px-2 py-1 flex items-center custom mb-0 border border-1 border-border rounded-lg"
+                  className="text-xs sm:text-sm px-2 py-1 flex items-center mb-0 border border-border rounded-lg"
                   key={techIndex}
                 >
-                  <div className="h-4 custom icn"></div>
                   <span>{tech}</span>
                 </div>
               ))}
             </div>
             <p
-              className="max-w-xl text-secondary mt-1 custom text-sm sm:text-base"
+              className="max-w-xl text-secondary mt-1 text-sm sm:text-base"
               dangerouslySetInnerHTML={{ __html: project.ProjectTagline }}
             ></p>
-            <div className="pointer-events-none absolute bottom-0 flex w-full translate-y-10 transform-gpu flex-row items-center pb-4 opacity-0 transition-all duration-300 group-hover:translate-y-10 group-hover:opacity-100 custom">
+            <div className="pointer-events-none absolute bottom-0 flex w-full translate-y-10 transform-gpu flex-row items-center pb-4 opacity-0 transition-all duration-300 group-hover:translate-y-10 group-hover:opacity-100">
               <Link
                 to={`/projects/${project.ProjectId}`}
                 aria-label={`View details for ${project.ProjectName}`}
