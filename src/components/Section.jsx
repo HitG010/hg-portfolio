@@ -1,6 +1,6 @@
-import { MapPinHouse, Linkedin, Github, Mail } from "lucide-react";
-import { SiLeetcode } from "react-icons/si";
-import { SiCodeforces } from "react-icons/si";
+import { MapPinHouse } from "lucide-react";
+import SocialLinks from "./SocialLinks";
+import { heroSocialIds } from "../data/socials";
 
 const Section = () => {
   return (
@@ -16,53 +16,11 @@ const Section = () => {
               <p>Delhi, India</p>
             </div>
           </div>
-          <div className="flex gap-2 mt-4 md:mt-0">
-            <div className="group relative overflow-hidden w-10 h-10 md:w-12 md:h-12 rounded-lg hover:opacity-1">
-              <Mail
-                className="w-full h-full p-2.5 md:p-3 border border-border rounded-lg cursor-pointer"
-                onClick={() => {
-                  window.open("mailto:guptahitesh201105@gmail.com");
-                }}
-              />
-              <div className="absolute bottom-0 left-0 right-0 h-2 bg-secondary opacity-30 blur-lg group-hover:opacity-100 transition duration-300"></div>
-            </div>
-            <div className="group relative overflow-hidden w-10 h-10 md:w-12 md:h-12 rounded-lg hover:opacity-1">
-              <Linkedin
-                className="w-full h-full p-2.5 md:p-3 border border-border rounded-lg cursor-pointer"
-                onClick={() => {
-                  window.open("https://www.linkedin.com/in/hiteshgupta201105/");
-                }}
-              />
-              <div className="absolute bottom-0 left-0 right-0 h-2 bg-secondary opacity-30 blur-lg group-hover:opacity-100 transition duration-300"></div>
-            </div>
-            <div className="group relative overflow-hidden w-10 h-10 md:w-12 md:h-12 rounded-lg hover:opacity-1">
-              <Github
-                className="w-full h-full p-2.5 md:p-3 border border-border rounded-lg cursor-pointer"
-                onClick={() => {
-                  window.open("https://www.github.com/HitG010/");
-                }}
-              />
-              <div className="absolute bottom-0 left-0 right-0 h-2 bg-secondary opacity-30 blur-lg group-hover:opacity-100 transition duration-300"></div>
-            </div>
-            <div className="group relative overflow-hidden w-10 h-10 md:w-12 md:h-12 rounded-lg hover:opacity-1">
-              <SiLeetcode
-                className="w-full h-full p-2.5 md:p-3 border border-border rounded-lg cursor-pointer"
-                onClick={() => {
-                  window.open("https://leetcode.com/u/HiteshGupta20/");
-                }}
-              />
-              <div className="absolute bottom-0 left-0 right-0 h-2 bg-secondary opacity-30 blur-lg group-hover:opacity-100 transition duration-300"></div>
-            </div>
-            <div className="group relative overflow-hidden w-10 h-10 md:w-12 md:h-12 rounded-lg hover:opacity-1">
-              <SiCodeforces
-                className="w-full h-full p-2.5 md:p-3 border border-border rounded-lg cursor-pointer"
-                onClick={() => {
-                  window.open("https://codeforces.com/profile/Hitesh10");
-                }}
-              />
-              <div className="absolute bottom-0 left-0 right-0 h-2 bg-secondary opacity-30 blur-lg group-hover:opacity-100 transition duration-300"></div>
-            </div>
-          </div>
+          <SocialLinks
+            ids={heroSocialIds}
+            size="sm"
+            className="mt-4 md:mt-0"
+          />
         </div>
         <p className="mt-4 text-base md:text-xl">
           I'm a passionate software engineer specializing in Machine Learning,
