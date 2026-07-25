@@ -52,6 +52,15 @@ const ProjectShowcase = ({ projects }) => {
     };
   }, [projects.length]);
 
+  const goTo = (index) => {
+    blockRefs.current[index]?.scrollIntoView({
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "auto"
+        : "smooth",
+      block: "center",
+    });
+  };
+
   // The preview column is the wider of the two so the work reads large. The
   // frame is 3:2 to match the thumbnails themselves (1280x832, ratio 1.54) —
   // a taller frame sized in vh looked bigger but object-cover then sliced
@@ -59,20 +68,47 @@ const ProjectShowcase = ({ projects }) => {
   return (
     <div className="grid grid-cols-[1.5fr_1fr] gap-10">
       <div>
-        <div className="sticky top-[16vh] aspect-[3/2] overflow-hidden rounded-xl border border-border bg-surface">
-          {projects.map((project, index) => (
-            <img
-              key={project.ProjectId}
-              src={project.thumbnailImg}
-              alt={`${project.ProjectName} preview`}
-              loading={index === 0 ? "eager" : "lazy"}
-              decoding="async"
-              aria-hidden={index !== activeIndex}
-              className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 motion-reduce:transition-none ${
-                index === activeIndex ? "opacity-100" : "opacity-0"
-              }`}
-            />
-          ))}
+        <div className="sticky top-[16vh]">
+          <div className="relative aspect-[3/2] overflow-hidden rounded-xl border border-border bg-surface">
+            {projects.map((project, index) => (
+              <img
+                key={project.ProjectId}
+                src={project.thumbnailImg}
+                alt={`${project.ProjectName} preview`}
+                loading={index === 0 ? "eager" : "lazy"}
+                decoding="async"
+                aria-hidden={index !== activeIndex}
+                className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 motion-reduce:transition-none ${
+                  index === activeIndex ? "opacity-100" : "opacity-0"
+                }`}
+              />
+            ))}
+          </div>
+
+          {/* Turns the showcase from something you only scroll past into
+              something you can steer. */}
+          <nav aria-label="Projects" className="mt-5 flex gap-2">
+            {projects.map((project, index) => (
+              <button
+                key={project.ProjectId}
+                type="button"
+                onClick={() => goTo(index)}
+                aria-current={index === activeIndex ? "true" : undefined}
+                className={`group flex-1 border-t-2 pt-3 text-left transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent motion-reduce:transition-none ${
+                  index === activeIndex
+                    ? "border-accent text-primary"
+                    : "border-border text-secondary hover:border-secondary hover:text-primary"
+                }`}
+              >
+                <span className="block text-xs font-medium tabular-nums">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span className="mt-1 block truncate text-sm">
+                  {project.ProjectName}
+                </span>
+              </button>
+            ))}
+          </nav>
         </div>
       </div>
 
