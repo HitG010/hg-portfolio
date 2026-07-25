@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Container from "./Container";
 
 /**
  * Shared empty state. Visiting an unknown route, or a project id that does
@@ -11,7 +12,11 @@ const NotFound = ({
   actionTo = "/",
   actionLabel = "Back to home",
 }) => (
-  <main className="mx-auto mt-32 flex w-full max-w-xl flex-col items-center px-4 text-center">
+  <Container
+    as="main"
+    size="narrow"
+    className="flex flex-col items-center pb-24 pt-40 text-center"
+  >
     <p className="text-6xl font-bold tracking-tight text-secondary">{code}</p>
     <h1 className="mt-4 text-3xl font-semibold">{title}</h1>
     <p className="mt-3 text-secondary">{message}</p>
@@ -21,7 +26,7 @@ const NotFound = ({
     >
       {actionLabel}
     </Link>
-  </main>
+  </Container>
 );
 
 export default NotFound;

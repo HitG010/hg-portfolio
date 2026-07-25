@@ -1,11 +1,12 @@
+import Container from "../components/Container";
 import SkillSet from "../components/SkillProgress";
 import SocialLinks from "../components/SocialLinks";
 import { contactSocialIds } from "../data/socials";
 
 const About = () => {
   return (
-    <div className="px-4 container mx-auto flex flex-col gap-8 mt-24 w-full md:w-[80%] lg:w-[60%]">
-      <h1 className="text-4xl font-semibold">About Me</h1>
+    <Container className="flex flex-col gap-8 pb-24 pt-28 md:pt-32">
+      <h1 className="text-headline font-semibold">About Me</h1>
       <p className="text-lg sm:text-base md:text-lg">
         I’m a dedicated software engineer with strong foundations in Machine
         Learning, Competitive Programming, and Full-Stack development, focused
@@ -32,9 +33,10 @@ const About = () => {
 
       <SkillSet />
 
-      <h1 className="text-2xl font-semibold mt-8">Contact Details</h1>
+      {/* Was a second <h1> on the same page. */}
+      <h2 className="mt-8 text-2xl font-semibold">Contact Details</h2>
       <SocialLinks ids={contactSocialIds} size="lg" className="gap-4" />
-    </div>
+    </Container>
   );
 };
 

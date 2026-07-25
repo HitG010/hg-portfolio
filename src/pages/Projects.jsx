@@ -1,11 +1,6 @@
-import ProjectCompo from '../components/Projects';
+import ProjectCompo from "../components/Projects";
 
-const Projects = () => {
-    return (
-        <div className="px-4 container mx-auto flex flex-col gap-8 items-center mt-24">
-        <ProjectCompo />
-        </div>
-    );
-}
+// The width and padding live in Container, inside ProjectCompo.
+const Projects = () => <ProjectCompo />;
 
 export default Projects;

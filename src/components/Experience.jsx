@@ -1,3 +1,5 @@
+import Container from "./Container";
+
 const experiences = [
   {
     title: "ML Research Intern",
@@ -25,8 +27,8 @@ const experiences = [
 
 const ExperienceSection = () => {
   return (
-    <div className="bg-bg text-primary mt-4 mx-auto w-full md:w-[60%] max-w-7xl px-4 sm:px-6 lg:px-8">
-      <h2 className="text-4xl font-bold mb-8">Experience</h2>
+    <Container as="section">
+      <h2 className="mb-8 text-4xl font-bold">Experience</h2>
       <div className="relative">
         {experiences.map((experience, index) => (
           <div
@@ -66,7 +68,7 @@ const ExperienceSection = () => {
           </div>
         ))}
       </div>
-    </div>
+    </Container>
   );
 };
 

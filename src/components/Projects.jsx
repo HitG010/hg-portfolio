@@ -1,10 +1,12 @@
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { projectsData } from "../data/projectsData";
 import { Link, useLocation } from "react-router-dom";
+import Container from "./Container";
+
 const Projects = () => {
   const path = useLocation().pathname;
   return (
-    <div className="bg-bg text-primary mt-4 w-full md:w-[60%] mx-auto px-4 md:px-0">
+    <Container as="section">
       <div className="flex justify-between gap-4 mb-8">
         <h2 className="text-4xl font-bold">Projects</h2>
         {path === "/" && (
@@ -77,7 +79,7 @@ const Projects = () => {
           </div>
         </div>
       ))}
-    </div>
+    </Container>
   );
 };
 

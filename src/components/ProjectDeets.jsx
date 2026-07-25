@@ -4,6 +4,7 @@ import { Github, Globe, Figma } from "lucide-react";
 
 import { projectsData } from "../data/projectsData.jsx";
 import NotFound from "./NotFound";
+import Container from "./Container";
 
 // Icons used to be picked by array position, so a project whose first link
 // was a live site still got a GitHub icon, and a fourth link got undefined.
@@ -36,7 +37,7 @@ const ProjectDeets = () => {
   }
 
   return (
-    <div className="mt-16 mx-auto w-full sm:w-[80%] md:w-[60%] px-4">
+    <Container className="pb-24 pt-28 md:pt-32">
       <Link
         to="/projects"
         className="inline-flex gap-2 items-center text-secondary px-4 py-2 rounded-md transition-colors duration-300 hover:bg-surface hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent mb-4"
@@ -127,7 +128,7 @@ const ProjectDeets = () => {
           ))}
         </div>
       </div>
-    </div>
+    </Container>
   );
 };
 
