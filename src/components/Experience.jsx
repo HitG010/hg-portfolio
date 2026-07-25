@@ -27,7 +27,7 @@ const experiences = [
 
 const ExperienceSection = () => {
   return (
-    <div className="bg-bgDark text-white mt-4 mx-auto w-full md:w-[60%] max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div className="bg-bg text-primary mt-4 mx-auto w-full md:w-[60%] max-w-7xl px-4 sm:px-6 lg:px-8">
       <h2 className="text-4xl font-bold mb-8">Experience</h2>
       <div className="relative">
         {experiences.map((experience, index) => (
@@ -35,7 +35,7 @@ const ExperienceSection = () => {
             key={index}
             className="relative pl-6 sm:pl-10 pb-8 flex flex-col sm:flex-row"
           >
-            <div className="z-10 absolute top-1 left-0 w-4 h-4 sm:w-5 sm:h-5 bg-white border border-4 border-textSecondary rounded-full"></div>{" "}
+            <div className="z-10 absolute top-1 left-0 w-4 h-4 sm:w-5 sm:h-5 bg-primary border border-4 border-secondary rounded-full"></div>{" "}
             {/* Dot */}
             <div className="flex-grow">
               <div className="flex flex-col sm:flex-row sm:justify-between items-start sm:items-center">
@@ -44,15 +44,15 @@ const ExperienceSection = () => {
                     {experience.title}
                   </h3>
                   <a
-                    className="relative group text-lg text-textSecondary hover:text-textPrimary w-inherit"
+                    className="relative group text-lg text-secondary hover:text-primary w-inherit"
                     href={experience.website}
                     target="_blank"
                   >
                     {experience.company}
-                    <span className="absolute inline-block h-[2px] left-0 bottom-0 w-0 bg-textPrimary transition-all duration-300 group-hover:w-full"></span>
+                    <span className="absolute inline-block h-[2px] left-0 bottom-0 w-0 bg-primary transition-all duration-300 group-hover:w-full"></span>
                   </a>
                 </div>
-                <p className="text-sm text-textSecondary italic mt-2 sm:mt-0">
+                <p className="text-sm text-secondary italic mt-2 sm:mt-0">
                   {experience.duration}
                 </p>
               </div>
@@ -62,7 +62,7 @@ const ExperienceSection = () => {
               ></div>
             </div>
             {index !== experiences.length - 1 && (
-              <div className="absolute left-[5px] sm:left-[7px] top-4 w-[6px] h-full bg-textSecondary/50"></div>
+              <div className="absolute left-[5px] sm:left-[7px] top-4 w-[6px] h-full bg-secondary/50"></div>
             )}
           </div>
         ))}

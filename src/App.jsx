@@ -36,7 +36,7 @@ const App = () => {
     <Loader />
   ) : (
     <div
-      className={`w-full min-h-screen bg-darkBg text-textPrimary transition-opacity duration-700 overflow-hidden`}
+      className={`w-full min-h-screen bg-bg text-primary transition-opacity duration-700 overflow-hidden`}
     >
       <Navbar />
       <AnimatePresence mode="wait">

@@ -5,9 +5,9 @@ const Footer = () => {
   return (
     <footer className="mt-12 flex flex-col items-center px-4 md:px-8">
       {/* get in touch section */}
-      <div className="relative group bg-bgDark text-white mt-4 w-full md:w-[70%] p-4 md:p-8">
+      <div className="relative group bg-bg text-primary mt-4 w-full md:w-[70%] p-4 md:p-8">
         <div className="flex flex-col gap-4">
-          <p className="text-textSecondary">
+          <p className="text-secondary">
             I'm currently looking for new opportunities, my inbox is always
             open. Got something to say?
           </p>
@@ -15,16 +15,16 @@ const Footer = () => {
         <div className="mt-4 flex flex-row justify-between items-center">
           <h2 className="text-xl md:text-4xl font-bold">Let's Get in Touch</h2>
           <div
-            className="relative group flex gap-2 text-lg text-textPrimary items-center cursor-pointer"
+            className="relative group flex gap-2 text-lg text-primary items-center cursor-pointer"
             onClick={() => {
               window.location.href = "/contact";
             }}
           >
             Say Hi 👋 <ArrowUpRight />
-            <span className="absolute inline-block h-[2px] left-0 bottom-0 w-0 bg-textPrimary transition-all duration-300 group-hover:w-full"></span>
+            <span className="absolute inline-block h-[2px] left-0 bottom-0 w-0 bg-primary transition-all duration-300 group-hover:w-full"></span>
           </div>
         </div>
-        <span className="absolute inline-block h-[2px] left-0 bottom-0 w-full bg-textSecondary/20 transition-all duration-300"></span>
+        <span className="absolute inline-block h-[2px] left-0 bottom-0 w-full bg-secondary/20 transition-all duration-300"></span>
       </div>
       <div className="flex justify-center items-center mt-6">
         <img
@@ -37,7 +37,7 @@ const Footer = () => {
       {window.innerWidth > 768 ? (
         <div className="flex flex-row justify-center text-4xl md:text-9xl font-bold w-full translate-y-2 h-20 overflow-hidden overflow-x-hidden gap-12 md:gap-4 -tracking-[0.02em]">
           <div>HITESH</div>
-          <div className="flex flex-col justify-center items-center text-textSecondary text-xs  mt-8 mb-4 tracking-[0em] font-light w-full">
+          <div className="flex flex-col justify-center items-center text-secondary text-xs  mt-8 mb-4 tracking-[0em] font-light w-full">
             <p className="text-nowrap">
               Built with ♡ | © {new Date().getFullYear()} Hitesh Gupta{" "}
             </p>
@@ -45,7 +45,7 @@ const Footer = () => {
               Find more of my projects on{" "}
               <a
                 href="https://www.github.com/HitG010"
-                className="text-textPrimary"
+                className="text-primary"
               >
                 Github
               </a>
@@ -55,7 +55,7 @@ const Footer = () => {
         </div>
       ) : (
         <div>
-          <div className="flex flex-col justify-center items-center text-textSecondary text-xs  mt-2 mb-4 tracking-[0em] font-light w-full">
+          <div className="flex flex-col justify-center items-center text-secondary text-xs  mt-2 mb-4 tracking-[0em] font-light w-full">
             <p className="text-nowrap">
               Built with ♡ | © {new Date().getFullYear()} Hitesh Gupta{" "}
             </p>
@@ -63,7 +63,7 @@ const Footer = () => {
               Find more of my projects on{" "}
               <a
                 href="https://www.github.com/HitG010"
-                className="text-textPrimary"
+                className="text-primary"
               >
                 Github
               </a>

@@ -40,49 +40,49 @@ const About = () => {
       <div className="flex gap-4 flex-wrap">
         <div className="group relative overflow-hidden w-12 h-12 md:w-16 md:h-16 rounded-lg hover:opacity-1 mb-4">
           <Mail
-            className="w-full h-full p-2.5 md:p-4 border border-white/10 rounded-lg cursor-pointer"
+            className="w-full h-full p-2.5 md:p-4 border border-border rounded-lg cursor-pointer"
             onClick={() => {
               window.open("mailto:guptahitesh201105@gmail.com");
             }}
           />
-          <div className="absolute bottom-0 left-0 right-0 h-2 bg-textSecondary opacity-30 blur-lg group-hover:opacity-100 transition duration-300"></div>
+          <div className="absolute bottom-0 left-0 right-0 h-2 bg-secondary opacity-30 blur-lg group-hover:opacity-100 transition duration-300"></div>
         </div>
         <div className="group relative overflow-hidden w-12 h-12 md:w-16 md:h-16 rounded-lg hover:opacity-1 mb-4">
           <Linkedin
-            className="w-full h-full p-2.5 md:p-4 border border-white/10 rounded-lg cursor-pointer"
+            className="w-full h-full p-2.5 md:p-4 border border-border rounded-lg cursor-pointer"
             onClick={() => {
               window.open("https://www.linkedin.com/in/hiteshgupta201105/");
             }}
           />
-          <div className="absolute bottom-0 left-0 right-0 h-2 bg-textSecondary opacity-30 blur-lg group-hover:opacity-100 transition duration-300"></div>
+          <div className="absolute bottom-0 left-0 right-0 h-2 bg-secondary opacity-30 blur-lg group-hover:opacity-100 transition duration-300"></div>
         </div>
         <div className="group relative overflow-hidden w-12 h-12 md:w-16 md:h-16 rounded-lg hover:opacity-1 mb-4">
           <Github
-            className="w-full h-full p-2.5 md:p-4 border border-white/10 rounded-lg cursor-pointer"
+            className="w-full h-full p-2.5 md:p-4 border border-border rounded-lg cursor-pointer"
             onClick={() => {
               window.open("https://www.github.com/HitG010");
             }}
           />
-          <div className="absolute bottom-0 left-0 right-0 h-2 bg-textSecondary opacity-30 blur-lg group-hover:opacity-100 transition duration-300"></div>
+          <div className="absolute bottom-0 left-0 right-0 h-2 bg-secondary opacity-30 blur-lg group-hover:opacity-100 transition duration-300"></div>
         </div>
         <div className="group relative overflow-hidden w-12 h-12 md:w-16 md:h-16 rounded-lg hover:opacity-1 mb-4">
           <RiTwitterXLine
-            className="w-full h-full p-2.5 md:p-4 border border-white/10 rounded-lg cursor-pointer"
+            className="w-full h-full p-2.5 md:p-4 border border-border rounded-lg cursor-pointer"
             onClick={() => {
               window.open("https://x.com/HiteshGupta2005");
             }}
           />
-          <div className="absolute bottom-0 left-0 right-0 h-2 bg-textSecondary opacity-30 blur-lg group-hover:opacity-100 transition duration-300"></div>
+          <div className="absolute bottom-0 left-0 right-0 h-2 bg-secondary opacity-30 blur-lg group-hover:opacity-100 transition duration-300"></div>
         </div>
 
         <div className="group relative overflow-hidden w-12 h-12 md:w-16 md:h-16 rounded-lg hover:opacity-1 mb-4">
           <FaTelegram
-            className="w-full h-full p-2.5 md:p-4 border border-white/10 rounded-lg cursor-pointer"
+            className="w-full h-full p-2.5 md:p-4 border border-border rounded-lg cursor-pointer"
             onClick={() => {
               window.open("https://t.me/HiteshG20");
             }}
           />
-          <div className="absolute bottom-0 left-0 right-0 h-2 bg-textSecondary opacity-30 blur-lg group-hover:opacity-100 transition duration-300"></div>
+          <div className="absolute bottom-0 left-0 right-0 h-2 bg-secondary opacity-30 blur-lg group-hover:opacity-100 transition duration-300"></div>
         </div>
       </div>
     </div>

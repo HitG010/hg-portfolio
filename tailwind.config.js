@@ -1,19 +1,40 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: "class",
   content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      // Every colour resolves through a CSS variable so the same class works
+      // in both themes. See the :root / .dark blocks in src/index.css.
       colors: {
-        neon: "#39ff14", // Neon green
-        darkBg: "#111111",
-        darkCard: "#1a1a1a",
-        textPrimary: "#eaeaea",
-        textSecondary: "#a3a3a3",
+        bg: "rgb(var(--bg) / <alpha-value>)",
+        surface: "rgb(var(--surface) / <alpha-value>)",
+        raised: "rgb(var(--raised) / <alpha-value>)",
+        border: "rgb(var(--border) / <alpha-value>)",
+        primary: "rgb(var(--text-primary) / <alpha-value>)",
+        secondary: "rgb(var(--text-secondary) / <alpha-value>)",
+        accent: "rgb(var(--accent) / <alpha-value>)",
       },
-      backgroundImage: {
-        card1: "url('assets/quantamind.png')",
-        card2: "url('assets/hgLogo.svg')",
-        card3: "url('assets/hgLogo.svg')",
+      fontFamily: {
+        sans: [
+          '"DM Sans"',
+          "ui-sans-serif",
+          "system-ui",
+          "-apple-system",
+          '"Segoe UI"',
+          "Roboto",
+          '"Helvetica Neue"',
+          "Arial",
+          "sans-serif",
+        ],
+      },
+      fontSize: {
+        display: ["clamp(2.5rem, 6vw, 4.5rem)", { lineHeight: "1.05" }],
+        headline: ["clamp(1.75rem, 3.5vw, 2.75rem)", { lineHeight: "1.15" }],
+      },
+      borderRadius: {
+        card: "1rem",
+        pill: "9999px",
       },
     },
   },

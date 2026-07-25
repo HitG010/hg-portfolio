@@ -35,9 +35,9 @@ const ProgressBar = ({ skill, level }) => {
         <span className="text-md font-semibold">{skill}</span>
         <span>{level}%</span>
       </div>
-      <div className="bg-textSecondary/50 h-2 rounded-full mt-2">
+      <div className="bg-secondary/50 h-2 rounded-full mt-2">
         <div
-          className="bg-textPrimary h-2 rounded-full"
+          className="bg-primary h-2 rounded-full"
           style={{ width: `${level}%` }}
         ></div>
       </div>
@@ -47,7 +47,7 @@ const ProgressBar = ({ skill, level }) => {
 
 // const SkillSet = () => {
 //   return (
-//     <div className="p-6 bg-darkCard/50 text-white rounded-xl">
+//     <div className="p-6 bg-surface/50 text-primary rounded-xl">
 //       <h2 className="text-3xl font-semibold mb-6">My Skills</h2>
 //       <div className="flex flex-col flex-wrap h-[350px] gap-4">
 //       {skills.map((skill, index) => (
@@ -59,11 +59,11 @@ const ProgressBar = ({ skill, level }) => {
 // };
 const SkillSet = () => {
   return (
-    <div className="text-white rounded-xl">
+    <div className="text-primary rounded-xl">
       <h2 className="text-2xl font-semibold mb-6">My Skills</h2>
       <div className="flex flex-wrap gap-4">
         {skills.map((skill, index) => (
-          <div className="flex justify-center items-center px-3 py-1 bg-darkCard/50 rounded-lg border border-1 border-textSecondary/20 transition-all duration-300 hover:bg-textSecondary/20 ">
+          <div className="flex justify-center items-center px-3 py-1 bg-surface/50 rounded-lg border border-1 border-secondary/20 transition-all duration-300 hover:bg-secondary/20 ">
             {skill.name}
           </div>
         ))}
