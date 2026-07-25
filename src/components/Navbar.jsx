@@ -89,9 +89,9 @@ const Navbar = () => {
         <Link
           to="/"
           aria-label="Hitesh Gupta — home"
-          className="rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+          className="shrink-0 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
         >
-          <img src={hglogo} alt="" className="h-8 md:h-10 object-contain" />
+          <img src={hglogo} alt="" className="h-8 w-auto shrink-0 object-contain md:h-10" />
         </Link>
 
         <ul className="gap-6 hidden md:flex">
@@ -104,15 +104,17 @@ const Navbar = () => {
           ))}
         </ul>
 
-        <div className="flex gap-2 items-center">
+        <div className="flex shrink-0 items-center gap-2">
           <ThemeToggle />
           <a
             href={resumeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-bg bg-primary text-md font-semibold py-2 px-4 rounded-lg flex gap-2 items-center hover:bg-primary/80 transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+            className="flex shrink-0 items-center gap-2 rounded-lg bg-primary px-3 py-2 text-md font-semibold text-bg transition-colors duration-300 hover:bg-primary/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg sm:px-4"
           >
-            <FileUser aria-hidden="true" className="w-5 h-5" /> Resume
+            <FileUser aria-hidden="true" className="h-5 w-5" />
+            {/* The label is the first thing to go when space is tight. */}
+            <span className="hidden sm:inline">Resume</span>
           </a>
 
           <div className="md:hidden">

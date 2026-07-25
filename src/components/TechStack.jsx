@@ -19,13 +19,13 @@ const TechStack = () => {
   return (
     <Container as="section">
       {/* Was an <h1>, which gave the home page two top-level headings. */}
-      <Reveal as="h2" className="text-4xl font-bold">
+      <Reveal as="h2" className="text-3xl font-bold sm:text-4xl">
         What I work with
       </Reveal>
 
       <motion.ul
         {...gridProps}
-        className="mt-8 grid grid-cols-5 gap-5 sm:grid-cols-7 lg:grid-cols-10"
+        className="mt-8 grid grid-cols-4 gap-3 xs:grid-cols-5 sm:grid-cols-7 sm:gap-5 lg:grid-cols-10"
       >
         {techStackIcons.map((tech) => (
           <motion.li
@@ -45,13 +45,15 @@ const TechStack = () => {
               // Full greyscale made 29 logos read as one grey mass. A partial
               // desaturation keeps the grid cohesive while letting each mark
               // stay recognisable; hover restores full colour.
-              className={`h-12 w-12 opacity-90 grayscale-[0.45] transition duration-300 group-hover:scale-110 group-hover:opacity-100 group-hover:grayscale-0 motion-reduce:transition-none motion-reduce:group-hover:scale-100 ${
+              className={`h-8 w-8 opacity-90 xs:h-9 xs:w-9 grayscale-[0.45] sm:h-12 sm:w-12 transition duration-300 group-hover:scale-110 group-hover:opacity-100 group-hover:grayscale-0 motion-reduce:transition-none motion-reduce:group-hover:scale-100 ${
                 tech.invertOnDark ? "dark:invert" : ""
               }`}
             />
             {/* Was positioned with top/left but no `absolute`, so it sat in
                 flow and shoved the icon on hover instead of floating below. */}
-            <span className="pointer-events-none absolute left-1/2 top-full z-10 -translate-x-1/2 translate-y-1 whitespace-nowrap rounded-md border border-border bg-surface px-2 py-1 text-xs text-primary opacity-0 transition-opacity duration-200 group-hover:opacity-100 motion-reduce:transition-none">
+            <span // Hover-only, so it is dead weight on touch and its absolute position
+              // pushed past the viewport edge at narrow widths.
+              className="pointer-events-none absolute left-1/2 top-full z-10 hidden -translate-x-1/2 translate-y-1 whitespace-nowrap rounded-md border border-border bg-surface px-2 py-1 text-xs text-primary opacity-0 transition-opacity duration-200 group-hover:opacity-100 motion-reduce:transition-none sm:block">
               {tech.name}
             </span>
           </motion.li>

@@ -25,7 +25,7 @@ const ExperienceSection = () => {
 
   return (
     <Container as="section">
-      <Reveal as="h2" className="mb-12 text-4xl font-bold">
+      <Reveal as="h2" className="mb-12 text-3xl font-bold sm:text-4xl">
         Experience
       </Reveal>
 
@@ -44,7 +44,7 @@ const ExperienceSection = () => {
 
         {experiences.map((role, index) => (
           <li key={`${role.company}-${role.duration}`} className="relative pb-14 last:pb-0">
-            <div className="flex gap-5">
+            <div className="flex gap-4 sm:gap-5">
               {/* The logo is what "arrives" as each role scrolls in. */}
               <motion.div
                 initial={
@@ -65,7 +65,7 @@ const ExperienceSection = () => {
 
               <Reveal delay={index * 0.04} className="min-w-0 flex-1 pt-1">
                 <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                  <h3 className="text-xl font-semibold sm:text-2xl">
+                  <h3 className="text-balance break-words text-lg font-semibold sm:text-xl md:text-2xl">
                     {role.title}
                   </h3>
                   <span className="text-sm tabular-nums text-secondary">

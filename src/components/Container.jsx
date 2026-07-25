@@ -18,7 +18,7 @@ const sizes = {
  */
 const Container = ({ as: Tag = "div", size = "default", className = "", children }) => (
   <Tag
-    className={`mx-auto w-full px-6 md:px-8 ${sizes[size] ?? sizes.default} ${className}`}
+    className={`mx-auto w-full px-4 sm:px-6 md:px-8 ${sizes[size] ?? sizes.default} ${className}`}
   >
     {children}
   </Tag>

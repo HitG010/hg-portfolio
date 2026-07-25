@@ -1,22 +1,33 @@
 import { useMemo } from "react";
 import { buildNetwork } from "./network";
+import { useMediaQuery } from "../../hooks/useMediaQuery";
 
-// Matched to what the 3D camera frames: at z=13 with a 45° fov the visible
-// height is 2 * 13 * tan(22.5°) ≈ 10.8 world units. Keeping the poster in the
-// same coordinate space means the crossfade to WebGL does not jump scale.
-const VIEW = { w: 26, h: 13.8 };
+// Desktop matches what the 3D camera frames: at z=13 with a 55° fov the
+// visible height is ~13.5 world units, so the crossfade to WebGL does not
+// jump scale.
+//
+// Phones need their own framing. Fitting all 26 units into a ~380px screen
+// works out at ~15px per unit, which renders the nodes at well under a pixel
+// — the network technically drew but you could barely see it. Zooming into a
+// portion of the same graph keeps the marks at a legible size.
+const VIEW_WIDE = { w: 26, h: 13.8 };
+const VIEW_NARROW = { w: 7, h: 15 };
 
 /**
- * What every visitor sees first, and all that phones, coarse pointers and
- * reduced-motion users ever see.
+ * What every visitor sees first — and on phones, coarse pointers and
+ * reduced-motion, all they ever see, because the WebGL gate never opens
+ * there. It therefore has to carry the scene's character on its own rather
+ * than read as a flat diagram: some nodes take the accent colour, nodes
+ * breathe, and dashes travel the edges to stand in for the signal pulses.
  *
- * Drawn as inline SVG from the same seeded geometry as the WebGL scene rather
- * than as a captured bitmap: it is around 2 KB, stays sharp at any size, and
- * picks up the theme through currentColor instead of needing a second asset
- * for light mode.
+ * All of that is CSS on inline SVG — about 2 KB, sharp at any size, themed
+ * through currentColor, and it costs nothing on the devices that need it
+ * most. Animations are disabled under prefers-reduced-motion in index.css.
  */
 const HeroPoster = ({ className = "" }) => {
   const { nodes, edges } = useMemo(() => buildNetwork(), []);
+  const isWide = useMediaQuery("(min-width: 640px)");
+  const VIEW = isWide ? VIEW_WIDE : VIEW_NARROW;
 
   // z only supplies depth cues here — nearer nodes read slightly larger.
   const depth = (z) => (z + 0.9) / 1.8;
@@ -40,17 +51,43 @@ const HeroPoster = ({ className = "" }) => {
           />
         ))}
       </g>
-      <g className="text-secondary" fill="currentColor">
-        {nodes.map((n, i) => (
+
+      {/* Every third edge carries a travelling dash, so the network reads as
+          active without the whole thing crawling. */}
+      <g className="text-accent" stroke="currentColor" strokeWidth="0.05">
+        {edges
+          .filter((_, i) => i % 3 === 0)
+          .map(([a, b], i) => (
+            <line
+              key={i}
+              x1={a.x}
+              y1={-a.y}
+              x2={b.x}
+              y2={-b.y}
+              className="nn-flow"
+              style={{ animationDelay: `${(i % 7) * 0.9}s` }}
+              opacity="0.55"
+            />
+          ))}
+      </g>
+
+      {nodes.map((n, i) => {
+        // A third of the nodes carry the accent, scattered rather than
+        // clustered, so the colour reads as highlights and not as a layer.
+        const isAccent = i % 3 === 1;
+        return (
           <circle
             key={i}
             cx={n.x}
             cy={-n.y}
-            r={0.05 + depth(n.z) * 0.025}
-            opacity={0.25 + depth(n.z) * 0.25}
+            r={0.05 + depth(n.z) * 0.03}
+            className={`nn-node ${isAccent ? "text-accent" : "text-secondary"}`}
+            fill="currentColor"
+            style={{ animationDelay: `${(i % 9) * 0.45}s` }}
+            opacity={0.3 + depth(n.z) * 0.3}
           />
-        ))}
-      </g>
+        );
+      })}
     </svg>
   );
 };
