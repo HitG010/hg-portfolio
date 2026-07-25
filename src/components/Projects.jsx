@@ -1,6 +1,5 @@
 import React from "react";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
-import LazyLoad from "react-lazyload";
 import { projectsData } from "../data/projectsData";
 import { useLocation } from "react-router-dom";
 const Projects = () => {
@@ -24,23 +23,23 @@ const Projects = () => {
           key={index}
         >
           <div>
-            <LazyLoad height={200} offset={100}>
-              <img
-                src={project.thumbnailImg}
-                alt="background"
-                className="absolute left-0 top-0 h-full w-full border-none transition-all duration-300 ease-out opacity-70 [mask-image:linear-gradient(to_top,transparent_20%,#000_100%)] group-hover:scale-105 object-cover"
-              />
-            </LazyLoad>
+            <img
+              src={project.thumbnailImg}
+              alt="background"
+              loading="lazy"
+              decoding="async"
+              className="absolute left-0 top-0 h-full w-full border-none transition-all duration-300 ease-out opacity-70 [mask-image:linear-gradient(to_top,transparent_20%,#000_100%)] group-hover:scale-105 object-cover"
+            />
           </div>
           <div className="pointer-events-none z-10 flex transform-gpu flex-col gap-1 p-4 sm:p-6 transition-all duration-300 group-hover:-translate-y-10 custom">
             {project.ProjectLogo !== undefined && (
-              <LazyLoad height={200} offset={100}>
-                <img
-                  src={project.ProjectLogo}
-                  alt="logo"
-                  className="h-10 w-10 sm:h-12 sm:w-12 object-contain mb-1"
-                />
-              </LazyLoad>
+              <img
+                src={project.ProjectLogo}
+                alt="logo"
+                loading="lazy"
+                decoding="async"
+                className="h-10 w-10 sm:h-12 sm:w-12 object-contain mb-1"
+              />
             )}
             <h2 className="text-2xl sm:text-3xl font-semibold text-white dark:text-neutral-300 m-0 custom">
               {project.ProjectName}

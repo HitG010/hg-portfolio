@@ -1,5 +1,4 @@
 import { techStackIcons } from "../assets/techStackIcons/techStackIcons";
-import LazyLoad from "react-lazyload";
 
 const TechStack = () => {
     return (
@@ -12,14 +11,13 @@ const TechStack = () => {
                             key={index}
                             className="relative group flex flex-col items-center justify-center grayscale hover:grayscale-0"
                         >
-                            <LazyLoad height={200} offset={100}>
                             <img
                                 src={tech.img}
                                 alt={tech.alt}
                                 className="w-12 h-12"
                                 loading="lazy"
+                                decoding="async"
                             />
-                            </LazyLoad>
                             <p className="text-sm text-textSecondary opacity-0 top-0 left-1/2 -translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition duration-200 text-center">
                                 {tech.name}
                             </p>
