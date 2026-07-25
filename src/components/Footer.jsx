@@ -31,52 +31,40 @@ const Footer = () => {
       <div className="flex justify-center items-center mt-6">
         <img
           src={hglogo}
-          alt="logo"
-          className="h-20 w-20 md:h-20 md:w-20 object-contain"
-        ></img>
+          alt=""
+          width="80"
+          height="80"
+          className="h-20 w-20 object-contain"
+        />
       </div>
-      {/* check the device and plan the footer accordingly */}
-      {window.innerWidth > 768 ? (
-        <div className="flex flex-row justify-center text-4xl md:text-9xl font-bold w-full translate-y-2 h-20 overflow-hidden overflow-x-hidden gap-12 md:gap-4 -tracking-[0.02em]">
-          <div>HITESH</div>
-          <div className="flex flex-col justify-center items-center text-secondary text-xs  mt-8 mb-4 tracking-[0em] font-light w-full">
-            <p className="text-nowrap">
-              Built with ♡ | © {new Date().getFullYear()} Hitesh Gupta{" "}
-            </p>
-            <p className="text-nowrap">
-              Find more of my projects on{" "}
-              <a
-                href="https://www.github.com/HitG010"
-                className="text-primary"
-              >
-                Github
-              </a>
-            </p>
-          </div>
-          <div>GUPTA</div>
+      {/* Mobile stacks the colophon above the wordmark; desktop threads it
+          between the two words. flex-wrap plus order does both from one copy
+          of the markup — the previous version branched on window.innerWidth
+          at render time, so it never responded to a resize or rotate. */}
+      <div className="flex w-full flex-wrap items-center justify-center gap-6 md:flex-nowrap md:gap-4">
+        <p className="order-2 text-6xl font-bold -tracking-[0.02em] md:order-1 md:text-9xl">
+          HITESH
+        </p>
+        <div className="order-1 mb-2 flex w-full flex-col items-center text-xs font-light tracking-[0em] text-secondary md:order-2 md:mb-4 md:mt-8 md:w-auto">
+          <p className="text-nowrap">
+            Built with ♡ | © {new Date().getFullYear()} Hitesh Gupta
+          </p>
+          <p className="text-nowrap">
+            Find more of my projects on{" "}
+            <a
+              href="https://www.github.com/HitG010"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            >
+              Github
+            </a>
+          </p>
         </div>
-      ) : (
-        <div>
-          <div className="flex flex-col justify-center items-center text-secondary text-xs  mt-2 mb-4 tracking-[0em] font-light w-full">
-            <p className="text-nowrap">
-              Built with ♡ | © {new Date().getFullYear()} Hitesh Gupta{" "}
-            </p>
-            <p className="text-nowrap">
-              Find more of my projects on{" "}
-              <a
-                href="https://www.github.com/HitG010"
-                className="text-primary"
-              >
-                Github
-              </a>
-            </p>
-          </div>
-          <div className="flex justify-center text-6xl md:text-9xl font-bold w-full translate-y-1 h-10 overflow-hidden gap-6 -tracking-[0.02em]">
-            <div>HITESH</div>
-            <div>GUPTA</div>
-          </div>
-        </div>
-      )}
+        <p className="order-3 text-6xl font-bold -tracking-[0.02em] md:text-9xl">
+          GUPTA
+        </p>
+      </div>
     </footer>
   );
 };
