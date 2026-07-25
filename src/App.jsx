@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import NotFound from "./components/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
+import Backdrop from "./components/hero/Backdrop";
 
 // Split per route so the initial bundle carries only what the landing page
 // needs. These were written as lazy imports originally but left commented
@@ -15,7 +16,9 @@ const Home = lazy(() => import("./pages/Home"));
 const About = lazy(() => import("./pages/About"));
 const Projects = lazy(() => import("./pages/Projects"));
 const ContactMe = lazy(() => import("./pages/ContactMe"));
-const ProjectDeets = lazy(() => import("./components/ProjectDeets"));
+const Blog = lazy(() => import("./pages/Blog"));
+const BlogPost = lazy(() => import("./pages/BlogPost"));
+const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -41,7 +44,10 @@ const App = () => {
       };
 
   return (
-    <div className="w-full min-h-screen bg-bg text-primary">
+    <div className="relative w-full min-h-screen bg-bg text-primary">
+      {/* Mounted here, above the router, so the canvas persists across route
+          changes rather than being torn down and rebuilt on every navigation. */}
+      <Backdrop />
       <Navbar />
       <ScrollToTop />
       <AnimatePresence mode="wait">
@@ -49,6 +55,7 @@ const App = () => {
           key={location.pathname}
           {...fade}
           transition={{ duration: prefersReducedMotion ? 0 : 0.28 }}
+          className="relative z-10"
         >
           <Suspense
             fallback={<div className="min-h-screen" aria-busy="true" />}
@@ -57,14 +64,18 @@ const App = () => {
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/projects" element={<Projects />} />
-              <Route path="/projects/:id" element={<ProjectDeets />} />
+              <Route path="/projects/:id" element={<ProjectDetail />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:slug" element={<BlogPost />} />
               <Route path="/contact" element={<ContactMe />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
         </motion.div>
       </AnimatePresence>
-      <Footer />
+      <div className="relative z-10">
+        <Footer />
+      </div>
     </div>
   );
 };

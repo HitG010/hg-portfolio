@@ -1,5 +1,5 @@
 import { useReducedMotion } from "framer-motion";
-import loaderVid from "../assets/NNLoader1.mp4";
+import loaderVid from "../assets/loader/neural-loader.mp4";
 
 const Loader = () => {
   const prefersReducedMotion = useReducedMotion();

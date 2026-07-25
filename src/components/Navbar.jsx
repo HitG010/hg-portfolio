@@ -1,7 +1,8 @@
 import { FileUser, Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import hglogo from "../assets/hgLogo.svg";
+import hglogo from "../assets/brand/hg-logo.svg";
+import Container from "./Container";
 import ThemeToggle from "./ThemeToggle";
 import { resumeUrl } from "../data/socials";
 
@@ -9,12 +10,15 @@ const navItems = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
   { to: "/projects", label: "Projects" },
+  { to: "/blog", label: "Writing" },
   { to: "/contact", label: "Contact Me" },
 ];
 
 const linkClasses = ({ isActive }) =>
-  `text-md rounded-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
-    isActive ? "text-primary font-medium" : "text-secondary hover:text-primary"
+  `relative text-md rounded-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
+    isActive
+      ? "text-primary font-medium after:absolute after:-bottom-1.5 after:left-0 after:h-[2px] after:w-full after:rounded-full after:bg-accent"
+      : "text-secondary hover:text-primary"
   }`;
 
 const Navbar = () => {
@@ -55,20 +59,39 @@ const Navbar = () => {
     };
   }, [isMenuOpen]);
 
+  // The old `from-bg to-transparent` gradient was not opaque enough: nav
+  // labels visibly collided with the tech grid while scrolling. Past the
+  // first scroll the bar gets a real blurred backdrop instead.
+  const [isScrolled, setIsScrolled] = useState(false);
+  useEffect(() => {
+    // Deliberately no requestAnimationFrame wrapper. rAF is throttled in
+    // background tabs, which left the bar stuck in its transparent state.
+    // React bails out when the value is unchanged, so calling this on every
+    // scroll event costs nothing — the state only flips twice.
+    const onScroll = () => setIsScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <nav
       aria-label="Main"
-      className="text-primary p-4 w-full fixed top-0 z-10 bg-gradient-to-b from-bg to-transparent"
+      className={`fixed top-0 z-20 w-full py-4 text-primary transition-colors duration-300 motion-reduce:transition-none ${
+        isScrolled
+          ? "border-b border-border bg-bg/80 backdrop-blur-md"
+          : "border-b border-transparent bg-transparent"
+      }`}
     >
-      <div className="px-4 container mx-auto flex justify-between items-center">
+      <Container className="flex items-center justify-between">
         {/* The link carries the accessible name, so the image itself is
             marked decorative to avoid announcing it twice. */}
         <Link
           to="/"
           aria-label="Hitesh Gupta — home"
-          className="rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+          className="shrink-0 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
         >
-          <img src={hglogo} alt="" className="h-8 md:h-10 object-contain" />
+          <img src={hglogo} alt="" className="h-8 w-auto shrink-0 object-contain md:h-10" />
         </Link>
 
         <ul className="gap-6 hidden md:flex">
@@ -81,15 +104,17 @@ const Navbar = () => {
           ))}
         </ul>
 
-        <div className="flex gap-2 items-center">
+        <div className="flex shrink-0 items-center gap-2">
           <ThemeToggle />
           <a
             href={resumeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-bg bg-primary text-md font-semibold py-2 px-4 rounded-lg flex gap-2 items-center hover:bg-primary/80 transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+            className="flex shrink-0 items-center gap-2 rounded-lg bg-primary px-3 py-2 text-md font-semibold text-bg transition-colors duration-300 hover:bg-primary/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg sm:px-4"
           >
-            <FileUser aria-hidden="true" className="w-5 h-5" /> Resume
+            <FileUser aria-hidden="true" className="h-5 w-5" />
+            {/* The label is the first thing to go when space is tight. */}
+            <span className="hidden sm:inline">Resume</span>
           </a>
 
           <div className="md:hidden">
@@ -126,7 +151,7 @@ const Navbar = () => {
             ))}
           </ul>
         )}
-      </div>
+      </Container>
     </nav>
   );
 };

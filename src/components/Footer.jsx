@@ -1,12 +1,13 @@
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import hglogo from "../assets/hgLogo.svg";
+import hglogo from "../assets/brand/hg-logo.svg";
+import Container from "./Container";
 
 const Footer = () => {
   return (
-    <footer className="mt-12 flex flex-col items-center px-4 md:px-8">
+    <Container as="footer" className="flex flex-col items-center pb-12 pt-12">
       {/* get in touch section */}
-      <div className="relative group bg-bg text-primary mt-4 w-full md:w-[70%] p-4 md:p-8">
+      <div className="group relative w-full py-4 text-primary md:py-8">
         <div className="flex flex-col gap-4">
           <p className="text-secondary">
             I’m currently looking for new opportunities, my inbox is always
@@ -65,7 +66,7 @@ const Footer = () => {
           GUPTA
         </p>
       </div>
-    </footer>
+    </Container>
   );
 };
 

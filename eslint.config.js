@@ -46,5 +46,12 @@ export default [
       "no-console": ["warn", { allow: ["warn", "error"] }],
     },
   },
+  {
+    // React Three Fiber renders three.js objects through JSX, so props like
+    // `args`, `geometry` and `transparent` are valid here even though they
+    // are not DOM attributes.
+    files: ["src/components/hero/**/*.jsx"],
+    rules: { "react/no-unknown-property": "off" },
+  },
   prettier,
 ];

@@ -1,26 +1,26 @@
-import deeptrace_logo_transaprent from "../assets/deeptrace_logo_transparent.png";
-import qunataMindLogo from "../assets/quantaMindLogo.png";
-import deeptrace from "../assets/deeptrace-dashboard.png";
-import quantamind from "../assets/quantamind.png";
-import deeptraceLanding from "../assets/deeptrace-landing.png";
-import deeptracesignup from "../assets/deeptrace-signup.png";
-import deeptraceUpload from "../assets/deeptrace-upload.png";
-import deeptraceWorkflow from "../assets/workflow_diagram_New.png";
-import quantaGames from "../assets/games dashboarddark.png";
-import quantaMeditate from "../assets/meditation session.png";
-import wordle from "../assets/wordle.png";
-import questionnaire from "../assets/questionnaire.png";
-import journal from "../assets/your journaldark.png";
-import EdunateLogo from "../assets/Edunate.png";
-import EdunateLanding from "../assets/Edunate-landing.png";
-import edunate1 from "../assets/edunate-working1.png";
-import edunate2 from "../assets/edunate-working2.png";
-import edunate3 from "../assets/edunate-working3.png";
-import edunate4 from "../assets/edunate-working4.png";
-import edunate5 from "../assets/edunate-working5.png";
-import edunate6 from "../assets/edunate-working6.png";
-import decopy1 from "../assets/decopyfy1.png";
-import code from "../assets/fallbackIcon.png";
+import deeptrace_logo_transaprent from "../assets/projects/deeptrace/logo.png";
+import qunataMindLogo from "../assets/projects/quantamind/logo.png";
+import deeptrace from "../assets/projects/deeptrace/dashboard.png";
+import quantamind from "../assets/projects/quantamind/dashboard.png";
+import deeptraceLanding from "../assets/projects/deeptrace/landing.png";
+import deeptracesignup from "../assets/projects/deeptrace/signup.png";
+import deeptraceUpload from "../assets/projects/deeptrace/upload.png";
+import deeptraceWorkflow from "../assets/projects/deeptrace/workflow.png";
+import quantaGames from "../assets/projects/quantamind/games.png";
+import quantaMeditate from "../assets/projects/quantamind/meditation.png";
+import wordle from "../assets/projects/quantamind/wordle.png";
+import questionnaire from "../assets/projects/quantamind/questionnaire.png";
+import journal from "../assets/projects/quantamind/journal.png";
+import EdunateLogo from "../assets/projects/edunate/logo.png";
+import EdunateLanding from "../assets/projects/edunate/landing.png";
+import edunate1 from "../assets/projects/edunate/working-1.png";
+import edunate2 from "../assets/projects/edunate/working-2.png";
+import edunate3 from "../assets/projects/edunate/working-3.png";
+import edunate4 from "../assets/projects/edunate/working-4.png";
+import edunate5 from "../assets/projects/edunate/working-5.png";
+import edunate6 from "../assets/projects/edunate/working-6.png";
+import decopy1 from "../assets/projects/decopyfy/preview.png";
+import code from "../assets/brand/fallback-icon.png";
 
 const projectsData = [
   {
@@ -134,10 +134,9 @@ const projectsData = [
       "FPN Decoder",
       "Streamlit",
     ],
-    // TODO: this was copy-pasted from Edunate and pointed visitors at the
-    // wrong project entirely. Emptied rather than guessed — add the real
-    // DeCopyfy repo URL here.
-    ProjectLinks: [],
+    // "EfficinetNet" is not a typo to fix — that is the actual repo name and
+    // it resolves; the corrected spelling 404s.
+    ProjectLinks: ["https://github.com/HitG010/EfficinetNet-Segmentation"],
     ProjectLogo: code,
     ProjectImages: [decopy1],
     ProjectVideo: [],

@@ -6,39 +6,62 @@ import { SiCodeforces, SiLeetcode } from "react-icons/si";
 // Single source of truth for every outbound personal link. The label is
 // what screen readers announce, so it names the destination rather than
 // the icon.
+export const email = "guptahitesh201105@gmail.com";
+
 export const socialLinks = {
   email: {
     label: "Email Hitesh",
-    href: "mailto:guptahitesh201105@gmail.com",
+    name: "Email",
+    handle: email,
+    description: "Best for anything detailed",
+    href: `mailto:${email}`,
     Icon: Mail,
   },
   linkedin: {
     label: "Hitesh on LinkedIn",
+    name: "LinkedIn",
+    handle: "in/hiteshgupta201105",
+    description: "Work history and updates",
     href: "https://www.linkedin.com/in/hiteshgupta201105/",
     Icon: Linkedin,
   },
   github: {
     label: "Hitesh on GitHub",
+    name: "GitHub",
+    handle: "@HitG010",
+    description: "Code and experiments",
     href: "https://www.github.com/HitG010",
     Icon: Github,
   },
   leetcode: {
     label: "Hitesh on LeetCode",
+    name: "LeetCode",
+    handle: "@HiteshGupta20",
+    description: "Problem solving",
     href: "https://leetcode.com/u/HiteshGupta20/",
     Icon: SiLeetcode,
   },
   codeforces: {
     label: "Hitesh on Codeforces",
+    name: "Codeforces",
+    handle: "@Hitesh10",
+    description: "Competitive programming",
     href: "https://codeforces.com/profile/Hitesh10",
     Icon: SiCodeforces,
   },
   x: {
     label: "Hitesh on X",
+    name: "X",
+    handle: "@HiteshGupta2005",
+    description: "Occasional thoughts",
     href: "https://x.com/HiteshGupta2005",
     Icon: RiTwitterXLine,
   },
   telegram: {
     label: "Hitesh on Telegram",
+    name: "Telegram",
+    handle: "@HiteshG20",
+    description: "Quickest reply",
     href: "https://t.me/HiteshG20",
     Icon: FaTelegram,
   },

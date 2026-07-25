@@ -1,9 +1,16 @@
+import typography from "@tailwindcss/typography";
+
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: "class",
-  content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
+  content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx,mdx}"],
   theme: {
     extend: {
+      screens: {
+        // Narrow phones (iPhone SE and below) need one more step than
+        // Tailwind ships with.
+        xs: "400px",
+      },
       // Every colour resolves through a CSS variable so the same class works
       // in both themes. See the :root / .dark blocks in src/index.css.
       colors: {
@@ -29,8 +36,8 @@ export default {
         ],
       },
       fontSize: {
-        display: ["clamp(2.5rem, 6vw, 4.5rem)", { lineHeight: "1.05" }],
-        headline: ["clamp(1.75rem, 3.5vw, 2.75rem)", { lineHeight: "1.15" }],
+        display: ["clamp(2rem, 6vw, 4.5rem)", { lineHeight: "1.05" }],
+        headline: ["clamp(1.5rem, 5vw, 2.75rem)", { lineHeight: "1.15" }],
       },
       borderRadius: {
         card: "1rem",
@@ -38,5 +45,5 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [typography],
 };
