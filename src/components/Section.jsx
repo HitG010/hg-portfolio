@@ -10,7 +10,7 @@ const Section = () => {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
           <div>
             <h1 className="text-2xl lg:text-3xl xl:text-4xl font-semibold">
-              Hi, I'm Hitesh Gupta 👋
+              Hi, I’m Hitesh Gupta 👋
             </h1>
             <div className="mt-1 text-base md:text-lg flex gap-2 items-center text-secondary">
               <MapPinHouse />
@@ -24,7 +24,7 @@ const Section = () => {
           />
         </div>
         <p className="mt-4 text-base md:text-xl">
-          I'm a passionate software engineer specializing in Machine Learning,
+          I’m a passionate software engineer specializing in Machine Learning,
           Competitive Programming and Full-Stack Development focused on building
           intelligent, high-impact, and scalable solutions through
           research-driven innovation.{" "}

@@ -7,7 +7,7 @@ const About = () => {
     <div className="px-4 container mx-auto flex flex-col gap-8 mt-24 w-full md:w-[80%] lg:w-[60%]">
       <h1 className="text-4xl font-semibold">About Me</h1>
       <p className="text-lg sm:text-base md:text-lg">
-        I'm a dedicated software engineer with strong foundations in Machine
+        I’m a dedicated software engineer with strong foundations in Machine
         Learning, Competitive Programming, and Full-Stack development, focused
         on building intelligent and scalable systems. I thrive in high-impact
         environments where I can combine algorithmic thinking, model design, and
@@ -16,7 +16,7 @@ const About = () => {
 
       <p className="text-lg sm:text-base md:text-lg">
         My approach is rooted in performance, precision, and user value—whether
-        it's developing advanced deepfake detection pipelines using Swin
+        it’s developing advanced deepfake detection pipelines using Swin
         Transformer and EfficientNet, creating AI-driven chatbots, or optimizing
         backend infrastructure for scalable deployment. I’ve built end-to-end
         solutions across web, AI, and data domains, always aiming for both

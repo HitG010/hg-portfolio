@@ -9,12 +9,12 @@ const Footer = () => {
       <div className="relative group bg-bg text-primary mt-4 w-full md:w-[70%] p-4 md:p-8">
         <div className="flex flex-col gap-4">
           <p className="text-secondary">
-            I'm currently looking for new opportunities, my inbox is always
+            I’m currently looking for new opportunities, my inbox is always
             open. Got something to say?
           </p>
         </div>
         <div className="mt-4 flex flex-row justify-between items-center">
-          <h2 className="text-xl md:text-4xl font-bold">Let's Get in Touch</h2>
+          <h2 className="text-xl md:text-4xl font-bold">Let’s Get in Touch</h2>
           <Link
             to="/contact"
             className="relative group flex gap-2 text-lg text-primary items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm"

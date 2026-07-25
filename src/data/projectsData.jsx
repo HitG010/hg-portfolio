@@ -41,6 +41,7 @@ const projectsData = [
       "TailwindCSS",
       "Node.js",
     ],
+    // TODO: this 404s as of 2026-07-25 — private repo, or renamed?
     ProjectLinks: ["https://www.github.com/HitG010/DeepTrace"],
     ProjectLogo: deeptrace_logo_transaprent,
     ProjectImages: [
@@ -70,6 +71,7 @@ const projectsData = [
     ],
     ProjectLinks: [
       "https://www.github.com/kartikbindra/quantamind",
+      // TODO: this domain does not resolve as of 2026-07-25 — expired?
       "https://quantamind.dev",
     ],
     ProjectLogo: qunataMindLogo,
@@ -132,7 +134,10 @@ const projectsData = [
       "FPN Decoder",
       "Streamlit",
     ],
-    ProjectLinks: ["https://www.github.com/HitG010/Edunate"],
+    // TODO: this was copy-pasted from Edunate and pointed visitors at the
+    // wrong project entirely. Emptied rather than guessed — add the real
+    // DeCopyfy repo URL here.
+    ProjectLinks: [],
     ProjectLogo: code,
     ProjectImages: [decopy1],
     ProjectVideo: [],

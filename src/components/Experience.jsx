@@ -1,5 +1,3 @@
-import React from "react";
-
 const experiences = [
   {
     title: "ML Research Intern",
@@ -47,6 +45,7 @@ const ExperienceSection = () => {
                     className="relative group text-lg text-secondary hover:text-primary w-inherit"
                     href={experience.website}
                     target="_blank"
+                    rel="noopener noreferrer"
                   >
                     {experience.company}
                     <span className="absolute inline-block h-[2px] left-0 bottom-0 w-0 bg-primary transition-all duration-300 group-hover:w-full"></span>
