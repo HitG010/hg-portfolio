@@ -22,13 +22,17 @@ const Projects = () => {
           className="group relative col-span-3 flex flex-col justify-between overflow-hidden mt-6 rounded-xl transform-gpu border border-border [box-shadow:0_-20px_80px_-20px_#0000000f_inset] dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset] min-h-[250px] sm:min-h-[300px] md:min-h-[500px]"
           key={index}
         >
+          {/* 70% reads as a moody backdrop against the dark card but washes
+              out to a ghost against white, so light mode keeps the thumbnail
+              nearly opaque. The mask still clears the bottom of the card
+              where the title and tags sit. */}
           <div>
             <img
               src={project.thumbnailImg}
               alt="background"
               loading="lazy"
               decoding="async"
-              className="absolute left-0 top-0 h-full w-full border-none transition-all duration-300 ease-out opacity-70 [mask-image:linear-gradient(to_top,transparent_20%,#000_100%)] group-hover:scale-105 object-cover"
+              className="absolute left-0 top-0 h-full w-full border-none transition-all duration-300 ease-out opacity-95 dark:opacity-70 [mask-image:linear-gradient(to_top,transparent_20%,#000_100%)] group-hover:scale-105 object-cover"
             />
           </div>
           <div className="pointer-events-none z-10 flex transform-gpu flex-col gap-1 p-4 sm:p-6 transition-all duration-300 group-hover:-translate-y-10 custom">
