@@ -1,15 +1,36 @@
+import { motion, useReducedMotion } from "framer-motion";
 import Container from "./Container";
+import Reveal from "./Reveal";
+import { staggerChildren, fadeUp, VIEWPORT_ONCE } from "../lib/motion";
 import { techStackIcons } from "../assets/techStackIcons/techStackIcons";
 
 const TechStack = () => {
+  const prefersReducedMotion = useReducedMotion();
+
+  const gridProps = prefersReducedMotion
+    ? {}
+    : {
+        variants: staggerChildren(0.02),
+        initial: "hidden",
+        whileInView: "visible",
+        viewport: VIEWPORT_ONCE,
+      };
+
   return (
     <Container as="section">
       {/* Was an <h1>, which gave the home page two top-level headings. */}
-      <h2 className="text-4xl font-bold">What I work with</h2>
-      <ul className="mt-8 grid grid-cols-5 gap-5 sm:grid-cols-7 lg:grid-cols-10">
+      <Reveal as="h2" className="text-4xl font-bold">
+        What I work with
+      </Reveal>
+
+      <motion.ul
+        {...gridProps}
+        className="mt-8 grid grid-cols-5 gap-5 sm:grid-cols-7 lg:grid-cols-10"
+      >
         {techStackIcons.map((tech) => (
-          <li
+          <motion.li
             key={tech.name}
+            variants={prefersReducedMotion ? undefined : fadeUp}
             className="group relative flex flex-col items-center justify-center"
           >
             {/* Deliberately eager: this grid sits in the first viewport,
@@ -21,7 +42,10 @@ const TechStack = () => {
               width="48"
               height="48"
               decoding="async"
-              className={`h-12 w-12 opacity-80 grayscale transition duration-300 group-hover:opacity-100 group-hover:grayscale-0 motion-reduce:transition-none ${
+              // Full greyscale made 29 logos read as one grey mass. A partial
+              // desaturation keeps the grid cohesive while letting each mark
+              // stay recognisable; hover restores full colour.
+              className={`h-12 w-12 opacity-90 grayscale-[0.45] transition duration-300 group-hover:scale-110 group-hover:opacity-100 group-hover:grayscale-0 motion-reduce:transition-none motion-reduce:group-hover:scale-100 ${
                 tech.invertOnDark ? "dark:invert" : ""
               }`}
             />
@@ -30,9 +54,9 @@ const TechStack = () => {
             <span className="pointer-events-none absolute left-1/2 top-full z-10 -translate-x-1/2 translate-y-1 whitespace-nowrap rounded-md border border-border bg-surface px-2 py-1 text-xs text-primary opacity-0 transition-opacity duration-200 group-hover:opacity-100 motion-reduce:transition-none">
               {tech.name}
             </span>
-          </li>
+          </motion.li>
         ))}
-      </ul>
+      </motion.ul>
     </Container>
   );
 };

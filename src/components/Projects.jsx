@@ -2,12 +2,13 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { projectsData } from "../data/projectsData";
 import { Link, useLocation } from "react-router-dom";
 import Container from "./Container";
+import Reveal from "./Reveal";
 
 const Projects = () => {
   const path = useLocation().pathname;
   return (
     <Container as="section">
-      <div className="flex justify-between gap-4 mb-8">
+      <Reveal className="flex justify-between gap-4 mb-8">
         <h2 className="text-4xl font-bold">Projects</h2>
         {path === "/" && (
           <Link
@@ -17,11 +18,11 @@ const Projects = () => {
             View All <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
           </Link>
         )}
-      </div>
+      </Reveal>
       {projectsData.map((project, index) => (
-        <div
+        <Reveal
           className="group relative col-span-3 flex flex-col justify-between overflow-hidden mt-6 rounded-xl transform-gpu border border-border [box-shadow:0_-20px_80px_-20px_#0000000f_inset] dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset] min-h-[250px] sm:min-h-[300px] md:min-h-[500px]"
-          key={index}
+          key={project.ProjectId}
         >
           {/* 70% reads as a moody backdrop against the dark card but washes
               out to a ghost against white, so light mode keeps the thumbnail
@@ -77,7 +78,7 @@ const Projects = () => {
               <div className="pointer-events-none absolute inset-0 transform-gpu transition-all duration-300 group-hover:bg-primary/[0.03]"></div>
             </div>
           </div>
-        </div>
+        </Reveal>
       ))}
     </Container>
   );

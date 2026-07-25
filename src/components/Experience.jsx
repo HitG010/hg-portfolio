@@ -1,4 +1,7 @@
+import { motion, useReducedMotion } from "framer-motion";
 import Container from "./Container";
+import Reveal from "./Reveal";
+import { EASE_OUT_EXPO, VIEWPORT_ONCE } from "../lib/motion";
 
 const experiences = [
   {
@@ -26,48 +29,67 @@ const experiences = [
 ];
 
 const ExperienceSection = () => {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
     <Container as="section">
-      <h2 className="mb-8 text-4xl font-bold">Experience</h2>
-      <div className="relative">
+      <Reveal as="h2" className="mb-10 text-4xl font-bold">
+        Experience
+      </Reveal>
+
+      <ol className="relative">
+        {/* One continuous hairline, drawn from the top on scroll. Replaces
+            the old 6px grey bar that was re-drawn per entry. */}
+        <motion.span
+          aria-hidden="true"
+          className="absolute bottom-4 left-[7px] top-3 w-px origin-top bg-border"
+          initial={prefersReducedMotion ? false : { scaleY: 0 }}
+          whileInView={{ scaleY: 1 }}
+          viewport={VIEWPORT_ONCE}
+          transition={{
+            duration: prefersReducedMotion ? 0 : 0.9,
+            ease: EASE_OUT_EXPO,
+          }}
+        />
+
         {experiences.map((experience, index) => (
-          <div
-            key={index}
-            className="relative pl-6 sm:pl-10 pb-8 flex flex-col sm:flex-row"
+          <Reveal
+            as="li"
+            key={experience.company}
+            delay={index * 0.08}
+            className="relative pb-10 pl-8 last:pb-0"
           >
-            <div className="z-10 absolute top-1 left-0 w-4 h-4 sm:w-5 sm:h-5 bg-primary border-4 border-secondary rounded-full"></div>{" "}
-            {/* Dot */}
-            <div className="flex-grow">
-              <div className="flex flex-col sm:flex-row sm:justify-between items-start sm:items-center">
-                <div>
-                  <h3 className="text-xl sm:text-2xl font-semibold">
-                    {experience.title}
-                  </h3>
-                  <a
-                    className="relative group text-lg text-secondary hover:text-primary w-inherit"
-                    href={experience.website}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {experience.company}
-                    <span className="absolute inline-block h-[2px] left-0 bottom-0 w-0 bg-primary transition-all duration-300 group-hover:w-full"></span>
-                  </a>
-                </div>
-                <p className="text-sm text-secondary italic mt-2 sm:mt-0">
-                  {experience.duration}
-                </p>
-              </div>
-              <div
-                dangerouslySetInnerHTML={{ __html: experience.description }}
-                className="mt-4 text-sm sm:text-base"
-              ></div>
+            <span
+              aria-hidden="true"
+              className="absolute left-0 top-1.5 h-[15px] w-[15px] rounded-full border-2 border-accent bg-bg"
+            />
+            <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+              <h3 className="text-xl font-semibold sm:text-2xl">
+                {experience.title}
+              </h3>
+              <span className="text-sm text-secondary">
+                {experience.duration}
+              </span>
             </div>
-            {index !== experiences.length - 1 && (
-              <div className="absolute left-[5px] sm:left-[7px] top-4 w-[6px] h-full bg-secondary/50"></div>
-            )}
-          </div>
+            <a
+              className="group relative inline-block text-lg text-secondary transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              href={experience.website}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {experience.company}
+              <span
+                aria-hidden="true"
+                className="absolute bottom-0 left-0 inline-block h-[1px] w-0 bg-accent transition-all duration-300 group-hover:w-full motion-reduce:transition-none"
+              ></span>
+            </a>
+            <div
+              dangerouslySetInnerHTML={{ __html: experience.description }}
+              className="mt-4 text-sm text-secondary sm:text-base"
+            ></div>
+          </Reveal>
         ))}
-      </div>
+      </ol>
     </Container>
   );
 };
