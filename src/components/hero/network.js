@@ -2,10 +2,14 @@
 // scene. A seeded generator keeps them identical, so the crossfade when
 // three.js finishes loading lands on the same shape rather than a reshuffle.
 
-const LAYERS = [4, 6, 6, 3];
-const SPACING_X = 2.3;
-const SPACING_Y = 1.15;
-const EDGE_DENSITY = 0.55;
+// Sized to span a full viewport rather than a 377px band. More layers spread
+// the network across the width instead of clustering it in the middle, and
+// wide spacing keeps the node dots small relative to the gaps between them —
+// which is what makes this read as a backdrop rather than as foreground art.
+const LAYERS = [4, 6, 7, 7, 6, 4];
+const SPACING_X = 4;
+const SPACING_Y = 2.4;
+const EDGE_DENSITY = 0.32;
 
 // Mulberry32 — small, fast, and deterministic for a fixed seed.
 function seededRandom(seed) {

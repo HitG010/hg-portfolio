@@ -6,7 +6,14 @@ import { useWebGLEligible } from "./useWebGLEligible";
 // browser never requests it.
 const NeuralScene = lazy(() => import("./NeuralScene"));
 
-const Hero = () => {
+/**
+ * Site-wide background layer.
+ *
+ * Fixed rather than per-section, and mounted once in App above the router, so
+ * it survives route changes — the canvas is never torn down and rebuilt, and
+ * the network reads as one continuous space the content moves through.
+ */
+const Backdrop = () => {
   const eligible = useWebGLEligible();
   const [sceneReady, setSceneReady] = useState(false);
 
@@ -17,7 +24,7 @@ const Hero = () => {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
+      className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
     >
       <div
         className={`absolute inset-0 transition-opacity duration-700 motion-reduce:transition-none ${
@@ -42,4 +49,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default Backdrop;

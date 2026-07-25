@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import NotFound from "./components/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
+import Backdrop from "./components/hero/Backdrop";
 
 // Split per route so the initial bundle carries only what the landing page
 // needs. These were written as lazy imports originally but left commented
@@ -41,7 +42,10 @@ const App = () => {
       };
 
   return (
-    <div className="w-full min-h-screen bg-bg text-primary">
+    <div className="relative w-full min-h-screen bg-bg text-primary">
+      {/* Mounted here, above the router, so the canvas persists across route
+          changes rather than being torn down and rebuilt on every navigation. */}
+      <Backdrop />
       <Navbar />
       <ScrollToTop />
       <AnimatePresence mode="wait">
@@ -49,6 +53,7 @@ const App = () => {
           key={location.pathname}
           {...fade}
           transition={{ duration: prefersReducedMotion ? 0 : 0.28 }}
+          className="relative z-10"
         >
           <Suspense
             fallback={<div className="min-h-screen" aria-busy="true" />}
@@ -64,7 +69,9 @@ const App = () => {
           </Suspense>
         </motion.div>
       </AnimatePresence>
-      <Footer />
+      <div className="relative z-10">
+        <Footer />
+      </div>
     </div>
   );
 };
