@@ -30,13 +30,16 @@ const Projects = () => {
       {canShowcase ? (
         <ProjectShowcase projects={projectsData} />
       ) : (
-        projectsData.map((project, index) => (
-          <ProjectCard
-            key={project.ProjectId}
-            project={project}
-            eager={index === 0}
-          />
-        ))
+        // Two-up from 640px so tablets are not one very long column.
+        <ul className="grid gap-4 sm:grid-cols-2">
+          {projectsData.map((project, index) => (
+            <ProjectCard
+              key={project.ProjectId}
+              project={project}
+              eager={index === 0}
+            />
+          ))}
+        </ul>
       )}
     </Container>
   );
