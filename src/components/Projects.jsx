@@ -19,7 +19,7 @@ const Projects = () => {
       </div>
       {projectsData.map((project, index) => (
         <div
-          className="group relative col-span-3 flex flex-col justify-between overflow-hidden mt-6 rounded-xl transform-gpu bg-background [border:1px_solid_rgba(255,255,255,.1)] [box-shadow:0_-20px_80px_-20px_#ffffff1f_inset] min-h-[250px] sm:min-h-[300px] md:min-h-[500px] custom"
+          className="group relative col-span-3 flex flex-col justify-between overflow-hidden mt-6 rounded-xl transform-gpu border border-border [box-shadow:0_-20px_80px_-20px_#0000000f_inset] dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset] min-h-[250px] sm:min-h-[300px] md:min-h-[500px]"
           key={index}
         >
           <div>

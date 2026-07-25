@@ -7,12 +7,18 @@ const Loader = () => {
       <div className="flex flex-col items-center">
         {/* <LoaderIcon className="animate-spin w-10 h-10" />
         <p className="mt-4 text-lg font-medium">Loading...</p> */}
+        {/* The clip is white line-art on solid black. Screen-blending drops
+            the black on the dark theme; on light we invert first and
+            multiply, so the artwork sits on the page background either way
+            instead of showing as a filled rectangle. */}
         <video
           id="loader-video"
           autoPlay
           muted
           loop
-          className="h-[60%] w-[50%] filter bg-blend-overlay"
+          playsInline
+          aria-hidden="true"
+          className="h-[60%] w-[50%] invert mix-blend-multiply dark:invert-0 dark:mix-blend-screen"
         >
           <source src={loaderVid} type="video/mp4" />
           Your browser does not support the video tag.

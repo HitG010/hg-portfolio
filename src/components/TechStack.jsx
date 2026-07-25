@@ -14,7 +14,7 @@ const TechStack = () => {
                             <img
                                 src={tech.img}
                                 alt={tech.alt}
-                                className="w-12 h-12"
+                                className={`w-12 h-12 ${tech.invertOnDark ? "dark:invert" : ""}`}
                                 loading="lazy"
                                 decoding="async"
                             />
