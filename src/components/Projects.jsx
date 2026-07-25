@@ -30,7 +30,8 @@ const Projects = () => {
             <img
               src={project.thumbnailImg}
               alt="background"
-              loading="lazy"
+              loading={index === 0 ? "eager" : "lazy"}
+              fetchPriority={index === 0 ? "high" : "auto"}
               decoding="async"
               className="absolute left-0 top-0 h-full w-full border-none transition-all duration-300 ease-out opacity-95 dark:opacity-70 [mask-image:linear-gradient(to_top,transparent_20%,#000_100%)] group-hover:scale-105 object-cover"
             />
@@ -39,8 +40,10 @@ const Projects = () => {
             {project.ProjectLogo !== undefined && (
               <img
                 src={project.ProjectLogo}
-                alt="logo"
-                loading="lazy"
+                alt={`${project.ProjectName} logo`}
+                width="48"
+                height="48"
+                loading={index === 0 ? "eager" : "lazy"}
                 decoding="async"
                 className="h-10 w-10 sm:h-12 sm:w-12 object-contain mb-1"
               />
