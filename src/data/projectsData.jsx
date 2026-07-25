@@ -134,10 +134,9 @@ const projectsData = [
       "FPN Decoder",
       "Streamlit",
     ],
-    // TODO: this was copy-pasted from Edunate and pointed visitors at the
-    // wrong project entirely. Emptied rather than guessed — add the real
-    // DeCopyfy repo URL here.
-    ProjectLinks: [],
+    // "EfficinetNet" is not a typo to fix — that is the actual repo name and
+    // it resolves; the corrected spelling 404s.
+    ProjectLinks: ["https://github.com/HitG010/EfficinetNet-Segmentation"],
     ProjectLogo: code,
     ProjectImages: [decopy1],
     ProjectVideo: [],

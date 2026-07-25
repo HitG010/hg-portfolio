@@ -1,93 +1,116 @@
-import { motion, useReducedMotion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
 import Container from "./Container";
 import Reveal from "./Reveal";
-import { EASE_OUT_EXPO, VIEWPORT_ONCE } from "../lib/motion";
-
-const experiences = [
-  {
-    title: "ML Research Intern",
-    company: "Delhi Technological University (Under Prof. Rahul Thakur)",
-    duration: "Aug. 2024 - Dec. 2024",
-    description: `<p className="mt-2">I developed a hybrid deep learning model combining Swin Transformer and EfficientNet-B0, achieving 98.32% accuracy on a dataset of 800+ videos and improving deepfake detection performance by 9.2%. Additionally, I engineered a Swin Transformer + FPN-based segmentation pipeline for image forgery detection, reducing false positives by 15% and significantly enhancing feature extraction capabilities. By optimizing training strategies through advanced data augmentation and fine-tuning, I achieved a 12% increase in model generalization on real vs. deepfake datasets.</p>`,
-    website:
-      "https://scholar.google.com/citations?user=e51fOvMAAAAJ&hl=en&oi=ao",
-  },
-  {
-    title: "Web Development & AI/ML Intern",
-    company: "Racloop Technologies, Gurgaon",
-    duration: "May. 2024 - Jul. 2024",
-    description: `<p className="mt-2">I designed and built custom chatbots from scratch using transformer-based architectures with up to 124 million parameters, tailored to meet specific company use cases. In addition, I contributed to multiple web development projects using Next.js, delivering over 4 responsive and high-performance web applications as part of a collaborative 5-member team. I also performed in-depth data analysis on more than 50,000 data points, generating actionable insights that led to a 15% improvement in workflow optimization.</p>`,
-    website: "https://whilter.ai/",
-  },
-  {
-    title: "Web Development & AI/ML Intern",
-    company: "Delhi Police",
-    duration: "Mar 2024 - May 2024",
-    description: `<p className="mt-2">I created a mobile application, DelhiCOP, to streamline crime tracking and daily reporting, significantly enhancing operational efficiency, also built a crime detection model leveraging advanced computer vision techniques such as LRCN, Conv-LSTM, and Vision Transformer, achieving 92% accuracy. Additionally, I conducted an in-depth analysis of over 10,000 crime records, uncovering patterns that led to a 20% improvement in resource allocation. I collaborated with a 15-member team, contributing to UI/UX design and implementing four intuitive front-end interfaces.</p>`,
-    website: "https://www.delhicop.in",
-  },
-];
+import CompanyLogo from "./CompanyLogo";
+import { VIEWPORT_ONCE } from "../lib/motion";
+import { experiences } from "../data/experience";
 
 const ExperienceSection = () => {
   const prefersReducedMotion = useReducedMotion();
+  const listRef = useRef(null);
+
+  // The spine fills as you read down it. Offsets are chosen so the fill
+  // tracks roughly where your eye is — starting when the list reaches the
+  // lower part of the viewport and completing as the last entry leaves.
+  const { scrollYProgress } = useScroll({
+    target: listRef,
+    offset: ["start 65%", "end 60%"],
+  });
+  const fill = useSpring(scrollYProgress, {
+    stiffness: 90,
+    damping: 30,
+    restDelta: 0.001,
+  });
 
   return (
     <Container as="section">
-      <Reveal as="h2" className="mb-10 text-4xl font-bold">
+      <Reveal as="h2" className="mb-12 text-4xl font-bold">
         Experience
       </Reveal>
 
-      <ol className="relative">
-        {/* One continuous hairline, drawn from the top on scroll. Replaces
-            the old 6px grey bar that was re-drawn per entry. */}
+      <ol ref={listRef} className="relative">
+        {/* Two lines stacked: a static track, and an accent fill scaled by
+            scroll progress on top of it. */}
+        <span
+          aria-hidden="true"
+          className="absolute bottom-6 left-6 top-6 w-px -translate-x-1/2 bg-border"
+        />
         <motion.span
           aria-hidden="true"
-          className="absolute bottom-4 left-[7px] top-3 w-px origin-top bg-border"
-          initial={prefersReducedMotion ? false : { scaleY: 0 }}
-          whileInView={{ scaleY: 1 }}
-          viewport={VIEWPORT_ONCE}
-          transition={{
-            duration: prefersReducedMotion ? 0 : 0.9,
-            ease: EASE_OUT_EXPO,
-          }}
+          className="absolute bottom-6 left-6 top-6 w-px -translate-x-1/2 origin-top bg-accent"
+          style={{ scaleY: prefersReducedMotion ? 1 : fill }}
         />
 
-        {experiences.map((experience, index) => (
-          <Reveal
-            as="li"
-            key={experience.company}
-            delay={index * 0.08}
-            className="relative pb-10 pl-8 last:pb-0"
-          >
-            <span
-              aria-hidden="true"
-              className="absolute left-0 top-1.5 h-[15px] w-[15px] rounded-full border-2 border-accent bg-bg"
-            />
-            <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-              <h3 className="text-xl font-semibold sm:text-2xl">
-                {experience.title}
-              </h3>
-              <span className="text-sm text-secondary">
-                {experience.duration}
-              </span>
+        {experiences.map((role, index) => (
+          <li key={`${role.company}-${role.duration}`} className="relative pb-14 last:pb-0">
+            <div className="flex gap-5">
+              {/* The logo is what "arrives" as each role scrolls in. */}
+              <motion.div
+                initial={
+                  prefersReducedMotion ? false : { scale: 0.4, opacity: 0 }
+                }
+                whileInView={{ scale: 1, opacity: 1 }}
+                viewport={VIEWPORT_ONCE}
+                transition={{
+                  type: "spring",
+                  stiffness: 260,
+                  damping: 20,
+                  delay: 0.05,
+                }}
+                className="relative z-10"
+              >
+                <CompanyLogo company={role.company} logo={role.logo} />
+              </motion.div>
+
+              <Reveal delay={index * 0.04} className="min-w-0 flex-1 pt-1">
+                <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                  <h3 className="text-xl font-semibold sm:text-2xl">
+                    {role.title}
+                  </h3>
+                  <span className="text-sm tabular-nums text-secondary">
+                    {role.duration}
+                  </span>
+                </div>
+
+                <p className="mt-1 flex flex-wrap items-center gap-x-2 text-secondary">
+                  <a
+                    href={role.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative font-medium text-primary transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent motion-reduce:transition-none"
+                  >
+                    {role.company}
+                    <span
+                      aria-hidden="true"
+                      className="absolute bottom-0 left-0 h-px w-0 bg-accent transition-all duration-300 group-hover:w-full motion-reduce:transition-none"
+                    />
+                  </a>
+                  {role.location && (
+                    <>
+                      <span aria-hidden="true">·</span>
+                      <span className="text-sm">{role.location}</span>
+                    </>
+                  )}
+                </p>
+
+                <ul className="mt-4 flex flex-col gap-2">
+                  {role.bullets.map((bullet) => (
+                    <li
+                      key={bullet}
+                      className="relative pl-5 text-sm leading-relaxed text-secondary sm:text-base"
+                    >
+                      <span
+                        aria-hidden="true"
+                        className="absolute left-0 top-[0.6em] h-1 w-1 rounded-full bg-secondary"
+                      />
+                      {bullet}
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
             </div>
-            <a
-              className="group relative inline-block text-lg text-secondary transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-              href={experience.website}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {experience.company}
-              <span
-                aria-hidden="true"
-                className="absolute bottom-0 left-0 inline-block h-[1px] w-0 bg-accent transition-all duration-300 group-hover:w-full motion-reduce:transition-none"
-              ></span>
-            </a>
-            <div
-              dangerouslySetInnerHTML={{ __html: experience.description }}
-              className="mt-4 text-sm text-secondary sm:text-base"
-            ></div>
-          </Reveal>
+          </li>
         ))}
       </ol>
     </Container>
