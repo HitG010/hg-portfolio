@@ -2,6 +2,7 @@ import { FileUser, Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import hglogo from "../assets/hgLogo.svg";
+import Container from "./Container";
 import ThemeToggle from "./ThemeToggle";
 import { resumeUrl } from "../data/socials";
 
@@ -13,8 +14,10 @@ const navItems = [
 ];
 
 const linkClasses = ({ isActive }) =>
-  `text-md rounded-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
-    isActive ? "text-primary font-medium" : "text-secondary hover:text-primary"
+  `relative text-md rounded-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
+    isActive
+      ? "text-primary font-medium after:absolute after:-bottom-1.5 after:left-0 after:h-[2px] after:w-full after:rounded-full after:bg-accent"
+      : "text-secondary hover:text-primary"
   }`;
 
 const Navbar = () => {
@@ -55,12 +58,31 @@ const Navbar = () => {
     };
   }, [isMenuOpen]);
 
+  // The old `from-bg to-transparent` gradient was not opaque enough: nav
+  // labels visibly collided with the tech grid while scrolling. Past the
+  // first scroll the bar gets a real blurred backdrop instead.
+  const [isScrolled, setIsScrolled] = useState(false);
+  useEffect(() => {
+    // Deliberately no requestAnimationFrame wrapper. rAF is throttled in
+    // background tabs, which left the bar stuck in its transparent state.
+    // React bails out when the value is unchanged, so calling this on every
+    // scroll event costs nothing — the state only flips twice.
+    const onScroll = () => setIsScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <nav
       aria-label="Main"
-      className="text-primary p-4 w-full fixed top-0 z-10 bg-gradient-to-b from-bg to-transparent"
+      className={`fixed top-0 z-20 w-full py-4 text-primary transition-colors duration-300 motion-reduce:transition-none ${
+        isScrolled
+          ? "border-b border-border bg-bg/80 backdrop-blur-md"
+          : "border-b border-transparent bg-transparent"
+      }`}
     >
-      <div className="px-4 container mx-auto flex justify-between items-center">
+      <Container className="flex items-center justify-between">
         {/* The link carries the accessible name, so the image itself is
             marked decorative to avoid announcing it twice. */}
         <Link
@@ -126,7 +148,7 @@ const Navbar = () => {
             ))}
           </ul>
         )}
-      </div>
+      </Container>
     </nav>
   );
 };
