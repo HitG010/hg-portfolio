@@ -1,15 +1,65 @@
-import { FileUser } from "lucide-react";
+import { FileUser, Menu, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import hglogo from "../assets/hgLogo.svg";
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
-import { Link } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
+import { resumeUrl } from "../data/socials";
+
+const navItems = [
+  { to: "/", label: "Home" },
+  { to: "/about", label: "About" },
+  { to: "/projects", label: "Projects" },
+  { to: "/contact", label: "Contact Me" },
+];
+
+const linkClasses = ({ isActive }) =>
+  `text-md rounded-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
+    isActive ? "text-primary font-medium" : "text-secondary hover:text-primary"
+  }`;
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+  const menuRef = useRef(null);
+  const buttonRef = useRef(null);
+
+  // The menu used to stay open on top of the page you had just navigated
+  // to. Adjusting during render rather than in an effect avoids a second
+  // render pass, and unlike an onClick handler it also covers back/forward.
+  const [lastPath, setLastPath] = useState(location.pathname);
+  if (location.pathname !== lastPath) {
+    setLastPath(location.pathname);
+    setIsMenuOpen(false);
+  }
+
+  useEffect(() => {
+    if (!isMenuOpen) return;
+
+    const onKeyDown = (event) => {
+      if (event.key !== "Escape") return;
+      setIsMenuOpen(false);
+      buttonRef.current?.focus();
+    };
+
+    const onPointerDown = (event) => {
+      if (menuRef.current?.contains(event.target)) return;
+      if (buttonRef.current?.contains(event.target)) return;
+      setIsMenuOpen(false);
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    document.addEventListener("pointerdown", onPointerDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener("pointerdown", onPointerDown);
+    };
+  }, [isMenuOpen]);
 
   return (
-    <nav className="text-primary p-4 w-full fixed top-0 z-10 bg-gradient-to-b from-bg to-transparent">
+    <nav
+      aria-label="Main"
+      className="text-primary p-4 w-full fixed top-0 z-10 bg-gradient-to-b from-bg to-transparent"
+    >
       <div className="px-4 container mx-auto flex justify-between items-center">
         {/* The link carries the accessible name, so the image itself is
             marked decorative to avoid announcing it twice. */}
@@ -20,44 +70,42 @@ const Navbar = () => {
         >
           <img src={hglogo} alt="" className="h-8 md:h-10 object-contain" />
         </Link>
-        <ul className="gap-6 text-primary hidden md:flex">
-          <li className="text-md cursor-pointer hover:text-primary">
-            <Link to="/">Home</Link>
-          </li>
-          <li className="text-md cursor-pointer hover:text-primary">
-            <Link to="/about">About</Link>
-          </li>
-          <li className="text-md cursor-pointer hover:text-primary">
-            <Link to="/projects">Projects</Link>
-          </li>
-          <li className="text-md cursor-pointer hover:text-primary">
-            <Link to="/contact">Contact Me</Link>
-          </li>
+
+        <ul className="gap-6 hidden md:flex">
+          {navItems.map(({ to, label }) => (
+            <li key={to}>
+              <NavLink to={to} end={to === "/"} className={linkClasses}>
+                {label}
+              </NavLink>
+            </li>
+          ))}
         </ul>
+
         <div className="flex gap-2 items-center">
           <ThemeToggle />
-          <button
-            className="text-bg bg-primary text-md font-semibold py-2 px-4 rounded-lg flex gap-2 items-center hover:bg-primary/80 transition duration-300"
-            onClick={() => {
-              window.open(
-                "https://drive.google.com/file/d/1QEnzFSLvV5zG4vWqVGjhs2QLqE2_5Z3F/view?usp=sharing",
-                "_blank"
-              );
-            }}
+          <a
+            href={resumeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-bg bg-primary text-md font-semibold py-2 px-4 rounded-lg flex gap-2 items-center hover:bg-primary/80 transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
           >
-            <FileUser className="w-5 h-5" /> Resume{" "}
-          </button>
+            <FileUser aria-hidden="true" className="w-5 h-5" /> Resume
+          </a>
 
-          {/* Hamburger Menu for Mobile */}
           <div className="md:hidden">
             <button
-              className="text-primary focus:outline-none"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              ref={buttonRef}
+              type="button"
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isMenuOpen}
+              aria-controls="mobile-menu"
+              className="flex h-10 w-10 items-center justify-center rounded-lg text-primary transition-colors hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              onClick={() => setIsMenuOpen((open) => !open)}
             >
               {isMenuOpen ? (
-                <X className="w-6 h-6" />
+                <X aria-hidden="true" className="w-6 h-6" />
               ) : (
-                <Menu className="w-6 h-6" />
+                <Menu aria-hidden="true" className="w-6 h-6" />
               )}
             </button>
           </div>
@@ -65,22 +113,17 @@ const Navbar = () => {
 
         {isMenuOpen && (
           <ul
-            className={`md:hidden absolute top-16 right-4 bg-bg/50 p-4 rounded-lg text-primary border-secondary/10 border flex flex-col gap-4 backdrop-blur-sm transition-all duration-1000 ${
-              isMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
-            }`}
+            id="mobile-menu"
+            ref={menuRef}
+            className="md:hidden absolute top-16 right-4 bg-bg/80 p-4 rounded-lg border border-border flex flex-col gap-4 backdrop-blur-sm"
           >
-            <li className="text-md cursor-pointer hover:text-primary">
-              <Link to="/">Home</Link>
-            </li>
-            <li className="text-md cursor-pointer hover:text-primary">
-              <Link to="/about">About</Link>
-            </li>
-            <li className="text-md cursor-pointer hover:text-primary">
-              <Link to="/projects/">Projects</Link>
-            </li>
-            <li className="text-md cursor-pointer hover:text-primary">
-              <Link to="/contact">Contact Me</Link>
-            </li>
+            {navItems.map(({ to, label }) => (
+              <li key={to}>
+                <NavLink to={to} end={to === "/"} className={linkClasses}>
+                  {label}
+                </NavLink>
+              </li>
+            ))}
           </ul>
         )}
       </div>
