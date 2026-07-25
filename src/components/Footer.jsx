@@ -1,6 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import hglogo from "../assets/hgLogo.svg";
+import hglogo from "../assets/brand/hg-logo.svg";
 import Container from "./Container";
 
 const Footer = () => {

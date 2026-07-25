@@ -2,7 +2,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import Container from "./Container";
 import Reveal from "./Reveal";
 import { staggerChildren, fadeUp, VIEWPORT_ONCE } from "../lib/motion";
-import { techStackIcons } from "../assets/techStackIcons/techStackIcons";
+import { techStackIcons } from "../assets/tech/icons";
 
 const TechStack = () => {
   const prefersReducedMotion = useReducedMotion();

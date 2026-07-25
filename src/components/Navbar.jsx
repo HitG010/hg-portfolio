@@ -1,7 +1,7 @@
 import { FileUser, Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import hglogo from "../assets/hgLogo.svg";
+import hglogo from "../assets/brand/hg-logo.svg";
 import Container from "./Container";
 import ThemeToggle from "./ThemeToggle";
 import { resumeUrl } from "../data/socials";
