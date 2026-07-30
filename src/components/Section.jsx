@@ -9,8 +9,10 @@ const Section = () => {
     <section>
       <Container>
         {/* Translucent so the site-wide network reads through the card
-            instead of being boxed out by it. */}
-        <div className="rounded-2xl border border-border bg-bg/60 backdrop-blur-md">
+            instead of being boxed out by it — but only just. At /60 with a
+            md blur the nodes behind it survived as grey blobs sitting under
+            the headline, which read as a dirty panel rather than depth. */}
+        <div className="rounded-2xl border border-border bg-bg/80 backdrop-blur-xl">
           <div className="px-6 py-8 md:px-8">
           <div className="flex flex-col items-start justify-between md:flex-row md:items-center">
             <div>

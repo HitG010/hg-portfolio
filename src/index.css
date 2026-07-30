@@ -17,6 +17,15 @@
   --text-primary: 24 24 27;
   --text-secondary: 82 82 91;
   --accent: 21 128 61;
+
+  /* Backdrop network. Deliberately its own scale rather than a reuse of
+     --text-secondary: that is a colour picked to be *read*, so on white it
+     put near-black marks behind the copy and the graph competed with the
+     text instead of sitting behind it. --nn-opacity dims the whole layer. */
+  --nn-line: 161 161 170;
+  --nn-node: 148 148 158;
+  --nn-accent: 52 199 123;
+  --nn-opacity: 0.75;
 }
 
 .dark {
@@ -27,6 +36,11 @@
   --text-primary: 234 234 234;
   --text-secondary: 163 163 163;
   --accent: 74 222 128;
+
+  --nn-line: 163 163 163;
+  --nn-node: 163 163 163;
+  --nn-accent: 74 222 128;
+  --nn-opacity: 0.8;
 }
 
 /* Applied by ThemeContext only while the theme is switching, so the flip
@@ -90,6 +104,26 @@
   .nn-node {
     animation: none;
   }
+}
+
+/* Readability scrim, painted over the network and under the content.
+   Most sections deliberately have no card of their own, so before this the
+   graph ran straight through body copy — nodes landed inside letterforms and
+   edges struck through lines of text. Lifting the page background back over
+   the network gives every block a calm base to sit on.
+
+   Centre-weighted rather than flat: the text column lives in the middle, so
+   that is where the veil is strongest, and it thins towards the corners where
+   the graph can still be read at close to full strength. Plain CSS for the
+   same reason as the blocks above — Tailwind would strip the class. */
+.nn-scrim {
+  background: radial-gradient(
+    95% 85% at 50% 40%,
+    rgb(var(--bg) / 0.62) 0%,
+    rgb(var(--bg) / 0.54) 40%,
+    rgb(var(--bg) / 0.28) 75%,
+    rgb(var(--bg) / 0.04) 100%
+  );
 }
 
 /* rehype-pretty-code is configured with a light and a dark theme, so it emits

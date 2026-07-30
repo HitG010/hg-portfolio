@@ -4,8 +4,11 @@ import hglogo from "../assets/brand/hg-logo.svg";
 import Container from "./Container";
 
 const Footer = () => {
+  // No bottom padding: the clipped wordmark is meant to be the last thing on
+  // the page, sitting flush on the bottom edge. Any padding under it reads as
+  // the band floating rather than running off.
   return (
-    <Container as="footer" className="flex flex-col items-center pb-12 pt-12">
+    <Container as="footer" className="flex flex-col items-center pt-12">
       {/* get in touch section */}
       <div className="group relative w-full py-4 text-primary md:py-8">
         <div className="flex flex-col gap-4">
@@ -42,8 +45,27 @@ const Footer = () => {
           between the two words. flex-wrap plus order does both from one copy
           of the markup — the previous version branched on window.innerWidth
           at render time, so it never responded to a resize or rotate. */}
-      <div className="flex w-full flex-wrap items-center justify-center gap-6 md:flex-nowrap md:gap-4">
-        <p className="order-2 text-6xl font-bold -tracking-[0.02em] md:order-1 md:text-9xl">
+      {/* The wordmark is deliberately larger than the room it has, on both
+          axes, and the clipping is the point rather than a bug to size away.
+
+          Vertically: each word is capped well under its own font size and
+          clips, so the glyphs are cut off part-way down and the name reads as
+          a band bleeding off the base of the page. h-10/h-20 against
+          60px/128px type are v1's ratios.
+
+          Horizontally: under ~1100px the two words outgrow the row and the H
+          and the A run off the edges. That should not cost the document 44px
+          of sideways scroll, which is what plain overflow did, so the row is
+          widened to full bleed — the negative margins cancel Container's
+          padding — and clips its own overflow, putting the cut on the viewport
+          edge. Widening does not move the words: they stay centred on the same
+          axis either way, only the clip boundary changes.
+
+          The cap sits on the words, not the row, because on mobile the
+          colophon wraps onto its own line inside this same row and must not
+          be clipped with them. */}
+      <div className="-mx-4 flex w-[calc(100%+2rem)] flex-wrap items-center justify-center gap-6 overflow-hidden sm:-mx-6 sm:w-[calc(100%+3rem)] md:-mx-8 md:w-[calc(100%+4rem)] md:flex-nowrap md:gap-4">
+        <p className="order-2 h-10 overflow-hidden text-6xl font-bold -tracking-[0.02em] md:order-1 md:h-20 md:text-9xl">
           HITESH
         </p>
         <div className="order-1 mb-2 flex w-full flex-col items-center text-xs font-light tracking-[0em] text-secondary md:order-2 md:mb-4 md:mt-8 md:w-auto">
@@ -62,7 +84,7 @@ const Footer = () => {
             </a>
           </p>
         </div>
-        <p className="order-3 text-6xl font-bold -tracking-[0.02em] md:text-9xl">
+        <p className="order-3 h-10 overflow-hidden text-6xl font-bold -tracking-[0.02em] md:h-20 md:text-9xl">
           GUPTA
         </p>
       </div>

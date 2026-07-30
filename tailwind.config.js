@@ -21,6 +21,13 @@ export default {
         primary: "rgb(var(--text-primary) / <alpha-value>)",
         secondary: "rgb(var(--text-secondary) / <alpha-value>)",
         accent: "rgb(var(--accent) / <alpha-value>)",
+        // Backdrop-only scale, kept apart from the text colours so the
+        // network can be tuned without touching legibility of the copy.
+        nn: {
+          line: "rgb(var(--nn-line) / <alpha-value>)",
+          node: "rgb(var(--nn-node) / <alpha-value>)",
+          accent: "rgb(var(--nn-accent) / <alpha-value>)",
+        },
       },
       fontFamily: {
         sans: [

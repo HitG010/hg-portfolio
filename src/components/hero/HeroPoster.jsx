@@ -39,7 +39,7 @@ const HeroPoster = ({ className = "" }) => {
       className={`h-full w-full ${className}`}
       preserveAspectRatio="xMidYMid meet"
     >
-      <g className="text-secondary" stroke="currentColor" strokeWidth="0.012">
+      <g className="text-nn-line" stroke="currentColor" strokeWidth="0.012">
         {edges.map(([a, b], i) => (
           <line
             key={i}
@@ -54,7 +54,7 @@ const HeroPoster = ({ className = "" }) => {
 
       {/* Every third edge carries a travelling dash, so the network reads as
           active without the whole thing crawling. */}
-      <g className="text-accent" stroke="currentColor" strokeWidth="0.05">
+      <g className="text-nn-accent" stroke="currentColor" strokeWidth="0.05">
         {edges
           .filter((_, i) => i % 3 === 0)
           .map(([a, b], i) => (
@@ -81,7 +81,7 @@ const HeroPoster = ({ className = "" }) => {
             cx={n.x}
             cy={-n.y}
             r={0.05 + depth(n.z) * 0.03}
-            className={`nn-node ${isAccent ? "text-accent" : "text-secondary"}`}
+            className={`nn-node ${isAccent ? "text-nn-accent" : "text-nn-node"}`}
             fill="currentColor"
             style={{ animationDelay: `${(i % 9) * 0.45}s` }}
             opacity={0.3 + depth(n.z) * 0.3}
