@@ -26,25 +26,34 @@ const Backdrop = () => {
       aria-hidden="true"
       className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
     >
-      <div
-        className={`absolute inset-0 transition-opacity duration-700 motion-reduce:transition-none ${
-          sceneReady ? "opacity-0" : "opacity-100"
-        }`}
-      >
-        <HeroPoster />
+      {/* The graph and its crossfade live inside one dimmed wrapper, so the
+          two layers stay in step and --nn-opacity is applied once rather than
+          multiplied into each. */}
+      <div className="absolute inset-0 opacity-[var(--nn-opacity)]">
+        <div
+          className={`absolute inset-0 transition-opacity duration-700 motion-reduce:transition-none ${
+            sceneReady ? "opacity-0" : "opacity-100"
+          }`}
+        >
+          <HeroPoster />
+        </div>
+
+        {eligible && (
+          <Suspense fallback={null}>
+            <div
+              className={`absolute inset-0 transition-opacity duration-700 motion-reduce:transition-none ${
+                sceneReady ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              <NeuralScene onReady={handleReady} />
+            </div>
+          </Suspense>
+        )}
       </div>
 
-      {eligible && (
-        <Suspense fallback={null}>
-          <div
-            className={`absolute inset-0 transition-opacity duration-700 motion-reduce:transition-none ${
-              sceneReady ? "opacity-100" : "opacity-0"
-            }`}
-          >
-            <NeuralScene onReady={handleReady} />
-          </div>
-        </Suspense>
-      )}
+      {/* Above the network, still below the content (this whole tree is z-0
+          and pages are z-10). See .nn-scrim in index.css. */}
+      <div className="nn-scrim absolute inset-0" />
     </div>
   );
 };

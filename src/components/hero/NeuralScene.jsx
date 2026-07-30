@@ -167,9 +167,9 @@ function Network({ onReady }) {
 
   const colors = useMemo(
     () => ({
-      node: readToken("--text-secondary", "#a3a3a3"),
-      accent: readToken("--accent", "#4ade80"),
-      edge: readToken("--text-secondary", "#a3a3a3"),
+      node: readToken("--nn-node", "#94949e"),
+      accent: readToken("--nn-accent", "#34c77b"),
+      edge: readToken("--nn-line", "#a1a1aa"),
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [theme]
